@@ -55,6 +55,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(doc-view-ghostscript-program "gs")
  '(latex-preview-pane-multifile-mode (quote auctex))
  '(package-selected-packages (quote (exec-path-from-shell auctex)))
  '(pdf-latex-command "xelatex"))
