@@ -161,15 +161,22 @@
 (use-package multiple-cursors
   :ensure t
   :bind (     ("C-S-c C-S-c" . mc/edit-lines)
-	      ("C->" . mc/mark-next-like-this-extended)
+	      ("C->" . mc/mark-more-like-this-extended)
 	      ("C-c C->" . mc/mark-all-like-this))
   )
 
 ;; ;;==================================================
 
 
-
-
+;; HTML CONFIGURATION
+;;--------------------------------------------------
+(use-package emmet-mode
+  :ensure t
+  :init (
+	 dolist(hook '(sgml-mode-hook css-mode-hook))
+	  (add-hook hook #'emmet-mode))
+  )
+;;==================================================
 
 
 (custom-set-variables
@@ -177,7 +184,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(package-selected-packages
+   (quote
+    (emmet-mode use-package smartparens py-autopep8 pdf-tools multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio flycheck expand-region exec-path-from-shell elpy auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
