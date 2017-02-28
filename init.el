@@ -65,7 +65,6 @@
 ;;==================================================
 
 
-
 ;; LATEX CONFIGURATIONS
 ;;--------------------------------------------------
 (use-package latex-preview-pane
@@ -74,13 +73,14 @@
   :init (setq pdf-latex-command "xelatex")
   )
 
+(setq TeX-engine "xetex")
 
 ;; PYTHON CONFIGURATION
 ;;-----------------------------------
 
-(use-package elpy
-  :ensure t
-  )
+ (use-package elpy
+   :ensure t
+   )
 
 (use-package py-autopep8
   :ensure t)
