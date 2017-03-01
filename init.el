@@ -73,7 +73,7 @@
   :init (setq pdf-latex-command "xelatex")
   )
 
-(setq TeX-engine "xetex")
+(setq TeX-engine 'xetex)
 
 ;; PYTHON CONFIGURATION
 ;;-----------------------------------
