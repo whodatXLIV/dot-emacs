@@ -68,6 +68,10 @@
 
 ;; GO CONFIGURATION
 ;;--------------------------------------------------
+(use-package go-mode
+  :ensure t
+  )
+
 
 ;; GIT CONFIGURATION
 ;;--------------------------------------------------
@@ -198,7 +202,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (emmet-mode use-package smartparens py-autopep8 pdf-tools multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio flycheck expand-region exec-path-from-shell elpy auctex))))
+    (go-mode emmet-mode use-package smartparens py-autopep8 pdf-tools multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio flycheck expand-region exec-path-from-shell elpy auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
