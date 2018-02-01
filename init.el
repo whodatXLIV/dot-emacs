@@ -38,8 +38,9 @@
 	  ;; Windows-specific code goes here.
 	  (add-to-list 'default-frame-alist
              '(font . "consolas-10:bold"))
+	  
+	  (add-to-list 'exec-path "~/.emacs.d/")
 	  )
-	 (add-to-list 'exec-path "~/.emacs.d/")
           ((eq system-type 'darwin)
            ;; Linux-specific code goes here.
 	   (add-to-list 'default-frame-alist
