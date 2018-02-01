@@ -6,6 +6,7 @@
 ;; Add my .emacs to path as well as all its subfolders
 (let ((default-directory  "~/.emacs.d/"))
   (normal-top-level-add-subdirs-to-load-path))
+
 ;; ==================================================
 
 (require 'tomorrow-night-bright-theme)
@@ -37,7 +38,8 @@
 	  ;; Windows-specific code goes here.
 	  (add-to-list 'default-frame-alist
              '(font . "consolas-10:bold"))
-           )
+	  )
+	 (add-to-list 'exec-path "~/.emacs.d/")
           ((eq system-type 'darwin)
            ;; Linux-specific code goes here.
 	   (add-to-list 'default-frame-alist
@@ -49,7 +51,7 @@
 	   ))
 
 ;;==================================================
-
+(getenv "PATH")
 
 ;; CONFIGURATIONS
 
@@ -64,6 +66,15 @@
   )
 ;;==================================================
 
+;; GO CONFIGURATION
+;;--------------------------------------------------
+
+;; GIT CONFIGURATION
+;;--------------------------------------------------
+(use-package magit
+  :ensure t
+  :init (global-set-key (kbd "C-x g") 'magit-status)
+  )
 
 ;; LATEX CONFIGURATIONS
 ;;--------------------------------------------------
