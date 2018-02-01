@@ -1,4 +1,4 @@
-;; GENERAL START UP SETTINGS tttt
+;; GENERAL START UP SETTINGS ssss
 ;;--------------------------------------------------
 (setq inhibit-startup-message t)        ; Disable startup message
 (global-linum-mode t) ;; enable line numbers globally
