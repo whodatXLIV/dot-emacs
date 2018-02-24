@@ -84,7 +84,8 @@
 
 (use-package go-mode
   :ensure t
-  :init (add-hook 'before-save-hook 'gofmt-before-save)
+  :init (setq gofmt-command "goimports")
+  (add-hook 'before-save-hook 'gofmt-before-save)
   (add-hook 'go-mode-hook '(lambda ()
 			     (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)))
   (add-hook 'go-mode-hook '(lambda ()
@@ -153,43 +154,41 @@
 	     ("M-<up>" . sp-beginning-of-sexp)
 	     ("M-<down>" . sp-end-of-sexp)
 
-	     ("C-<down>" . sp-down-sexp)
-	     ("C-<up>"   . sp-backward-up-sexp)
+	     ;("C-<down>" . sp-down-sexp)
+	     ;("C-<up>"   . sp-backward-up-sexp)
 	    ; ("M-<down>" . sp-backward-down-sexp)
 	    ; ("M-<up>"   . sp-up-sexp)
 
-	     ("C-M-f" . sp-forward-sexp)
-	     ("C-M-b" . sp-backward-sexp)
+	     ;("C-M-f" . sp-forward-sexp)
+	     ;("C-M-b" . sp-backward-sexp)
 
-	     ("C-M-n" . sp-next-sexp)
-	     ("C-M-p" . sp-previous-sexp)
+	     ;("C-M-n" . sp-next-sexp)
+	     ;("C-M-p" . sp-previous-sexp)
 
 	     ("C-<right>" . sp-forward-slurp-sexp)
 	     ("M-<right>" . sp-forward-barf-sexp)
 	     ("C-<left>"  . sp-backward-slurp-sexp)
 	     ("M-<left>"  . sp-backward-barf-sexp)
 
-	     ("C-M-t" . sp-transpose-sexp)
+	     ;("C-M-t" . sp-transpose-sexp)
 	     ("C-M-k" . sp-kill-sexp)
 	     ("C-k"   . sp-kill-hybrid-sexp)
 	     ("M-k"   . sp-backward-kill-sexp)
 	     ("C-M-w" . sp-copy-sexp)
 
-	     ("C-M-d" . delete-sexp)
+	     ;("C-M-d" . delete-sexp)
 
-	     ("M-<backspace>" . backward-kill-word)
-	     ("C-<backspace>" . sp-backward-kill-word)
-	     ([remap sp-backward-kill-word] . backward-kill-word)
+	     ;("M-<backspace>" . backward-kill-word)
+	     ;("C-<backspace>" . sp-backward-kill-word)
+	     ;([remap sp-backward-kill-word] . backward-kill-word)
 
-	     ("M-[" . sp-backward-unwrap-sexp)
-	     ("M-]" . sp-unwrap-sexp)
+	     ("M-]" . sp-backward-unwrap-sexp)
+	     ("M-[" . sp-unwrap-sexp)
 	     ; C-M space highlights words forward then use par to wrap them
 	     ("C-x C-t" . sp-transpose-hybrid-sexp)
 	     )
-
   )
-
-;;==================================================
+;; ===================
 
 
 ;; EXPAND REGIONS CONFIGURATION
@@ -243,5 +242,4 @@
  '(company-tooltip-common ((((type x)) (:inherit company-tooltip :weight bold)) (t (:inherit company-tooltip))))
  '(company-tooltip-common-selection ((((type x)) (:inherit company-tooltip-selection :weight bold)) (t (:inherit company-tooltip-selection))))
  '(company-tooltip-selection ((t (:background "steelblue" :foreground "white"))))
- '(sp-pair-overlay-face ((t (:inherit highlight :foreground "black")))))
-
+ '(sp-pair-overlay-face ((t (:foreground "snow")))))
