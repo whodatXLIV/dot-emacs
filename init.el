@@ -176,6 +176,9 @@
 	     ("M-k"   . sp-backward-kill-sexp)
 	     ("C-M-w" . sp-copy-sexp)
 
+	     ("M-s s" . sp-split-sexp)
+	     ("M-s j" . sp-join-sexp)
+
 	     ;("C-M-d" . delete-sexp)
 
 	     ;("M-<backspace>" . backward-kill-word)
@@ -203,12 +206,16 @@
 
 (use-package multiple-cursors
   :ensure t
-  :bind (     ("C-S-c C-S-c" . mc/edit-lines)
-	      ("C->" . mc/mark-more-like-this-extended)
-	      ("C-c C->" . mc/mark-all-like-this))
+  :bind (     ("C-> e" . mc/edit-lines)
+	      ("C-> m" . mc/mark-more-like-this-extended)
+	      ("C-> a" . mc/mark-all-like-this)
+	      ("C-> n" . mc/insert-numbers)
+	      ("C-> l" . mc/insert-letters)              
+	      )
   )
 
-;; ;;==================================================
+
+;;==================================================
 
 
 ;; HTML CONFIGURATION
