@@ -133,13 +133,13 @@
 (use-package jedi
   :ensure t )
 
-;; (elpy-enable)
-;; (when (require 'flycheck nil t)
-;;   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-;;   (add-hook 'elpy-mode-hook 'flycheck-mode))
-;; (require 'py-autopep8)
-;; (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
-;; ;;===================================
+ (elpy-enable)
+ (when (require 'flycheck nil t)
+   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+   (add-hook 'elpy-mode-hook 'flycheck-mode))
+ (require 'py-autopep8)
+ (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+ ;;===================================
 
 
 
@@ -250,3 +250,5 @@
  '(company-tooltip-common-selection ((((type x)) (:inherit company-tooltip-selection :weight bold)) (t (:inherit company-tooltip-selection))))
  '(company-tooltip-selection ((t (:background "steelblue" :foreground "white"))))
  '(sp-pair-overlay-face ((t (:foreground "snow")))))
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
