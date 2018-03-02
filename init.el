@@ -250,3 +250,4 @@
  '(company-tooltip-common-selection ((((type x)) (:inherit company-tooltip-selection :weight bold)) (t (:inherit company-tooltip-selection))))
  '(company-tooltip-selection ((t (:background "steelblue" :foreground "white"))))
  '(sp-pair-overlay-face ((t (:foreground "snow")))))
+(put 'upcase-region 'disabled nil)
