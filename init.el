@@ -141,6 +141,32 @@
  (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
  ;;===================================
 
+;;MARKDOWN MODE CONFIGURATION
+;;------------------------------
+
+(use-package flymd
+  :ensure t
+  :init
+  (cond ((eq system-type 'windows-nt)
+	  ;; Windows-specific code goes here.
+(defun my-flymd-browser-function (url)
+   (let ((browse-url-browser-function 'browse-url-firefox))
+     (browse-url url)))
+ (setq flymd-browser-open-function 'my-flymd-browser-function)
+	  )
+          ((eq system-type 'darwin)
+           ;; Linux-specific code goes here.
+  (defun my-flymd-browser-function (url)
+    (let ((process-environment (browse-url-process-environment)))
+      (apply 'start-process
+	     (concat "firefox " url)
+	     nil
+	     "/usr/bin/open"
+	     (list "-a" "firefox" url))))
+  (setq flymd-browser-open-function 'my-flymd-browser-function))
+	   ))
+
+
 
 
 
@@ -236,7 +262,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (go-mode emmet-mode use-package smartparens py-autopep8 pdf-tools multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio flycheck expand-region exec-path-from-shell elpy auctex))))
+    (flymd go-mode emmet-mode use-package smartparens py-autopep8 pdf-tools multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio flycheck expand-region exec-path-from-shell elpy auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
