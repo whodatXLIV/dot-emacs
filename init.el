@@ -4,9 +4,22 @@
 ;;  Many parts taken from:
 ;;       https://github.com/bling/dotemacs/
 ;; This file sets up the load path and calls the package requirements
+
+;;==================================================
+;;  GENERAL START UP
+;;==================================================
 (setq inhibit-startup-message t)        ; Disable startup message
 (global-linum-mode t) ;; enable line numbers globally
 (show-paren-mode 1)
+
+(global-set-key (kbd "C-c <up>") 'windmove-up)
+(global-set-key (kbd "C-c <down>") 'windmove-down)
+(global-set-key (kbd "C-c <left>") 'windmove-left)
+(global-set-key (kbd "C-c <right>") 'windmove-right)
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+
+;;==================================================
 
 (eval-when-compile (require 'cl))
 
@@ -44,7 +57,7 @@
     :group 'dotemacs)
 
   (defcustom dotemacs-switch-engine
-    'helm
+    'ido
     "The primary engine to use for narrowing and navigation."
     :type '(radio
             (const :tag "helm" helm)
@@ -53,7 +66,7 @@
     :group 'dotemacs)
 
   (defcustom dotemacs-pair-engine
-    'emacs
+    'smartparens
     "The primary engine to use auto-pairing and parens matching."
     :type '(radio
             (const :tag "emacs" emacs)
@@ -85,7 +98,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (use-package smartparens rainbow-delimiters py-autopep8 pdf-tools multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio git flycheck emmet-mode elpy company-go color-theme-sanityinc-tomorrow auctex))))
+    (all-the-icons-dired dired-sidebar flycheck-pos-tip use-package smartparens rainbow-delimiters py-autopep8 pdf-tools multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio git flycheck emmet-mode elpy company-go color-theme-sanityinc-tomorrow auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
