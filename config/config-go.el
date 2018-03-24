@@ -1,10 +1,19 @@
 (/boot/lazy-major-mode "\\.go$" go-mode)
 
 (after 'go-mode
+  (setq gofmt-command "goimports")
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  
   (after "company-autoloads"
     (require-package 'company-go)
     (require 'company-go)
     (add-hook 'go-mode-hook (lambda ()
-                              (set (make-local-variable 'company-backends) '(company-go))))))
+                              (set (make-local-variable 'company-backends) '(company-go)))))
+
+  (add-to-list 'load-path "~/Go/src/github.com/dougm/goflymake")
+  (require-package 'go-flymake)
+  (require 'go-flymake)
+  (require 'go-flycheck))   
+  
 
 (provide 'config-go)
