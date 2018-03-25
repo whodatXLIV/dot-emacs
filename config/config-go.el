@@ -3,6 +3,12 @@
 (after 'go-mode
   (setq gofmt-command "goimports")
   (add-hook 'before-save-hook 'gofmt-before-save)
+;;  (add-hook 'go-mode-hook '(lambda ()
+;;			     (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)))
+;;  (add-hook 'go-mode-hook '(lambda ()
+;;			     (local-set-key (kbd "C-c C-g") 'go-goto-imports)))
+ ;; (add-hook 'go-mode-hook '(lambda ()
+;;			     (local-set-key (kbd "C-c C-k") 'godoc)))
   
   (after "company-autoloads"
     (require-package 'company-go)

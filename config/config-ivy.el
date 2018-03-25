@@ -10,8 +10,6 @@
 
 
 
-;;(after 'ivy
-
 (require-package 'swiper)
 (global-set-key "\C-s" 'swiper)
 (after 'swiper
@@ -20,13 +18,19 @@
   (defadvice swiper-all (before dotemacs activate)
     (setq gc-cons-threshold most-positive-fixnum)))
 
-;;
-;;
-;;(require-package 'counsel)
-;;
+(require-package 'counsel)
+
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+
+(global-set-key (kbd "C-c f") 'counsel-describe-function)
+;;(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+;;(global-set-key (kbd "<f1> l") 'counsel-find-library)
+;;(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "C-c u") 'counsel-unicode-char)
 ;;
 ;;(after "projectile-autoloads"
 ;;  (require-package 'counsel-projectile))
-;;
+
 
 (provide 'config-ivy)
