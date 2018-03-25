@@ -5,4 +5,8 @@
   (global-set-key (kbd "C-> a") 'mc/mark-all-like-this)
   (global-set-key (kbd "C-> n") 'mc/insert-numbers)
   (global-set-key (kbd "C-> l") 'mc/insert-letters)
+  (global-unset-key (kbd "M-<down-mouse-1>"))
   (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click))
+
+(after 'multiple-cursors
+    (define-key mc/keymap (kbd "C-'") 'mc-hide-unmatched-lines-mode))

@@ -57,7 +57,7 @@
     :group 'dotemacs)
 
   (defcustom dotemacs-switch-engine
-    'ido
+    'ivy
     "The primary engine to use for narrowing and navigation."
     :type '(radio
             (const :tag "helm" helm)
