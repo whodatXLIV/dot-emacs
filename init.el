@@ -86,22 +86,12 @@
     (add-to-list 'load-path themes-directory)
     (load themes-file))
 
+  (when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
+
   (cl-loop for file in (reverse (directory-files-recursively config-directory "\\.el$"))
            do (condition-case ex
                   (load (file-name-sans-extension file))
                 ('error (with-current-buffer "*scratch*"
                           (insert (format "[INIT ERROR]\n%s\n%s\n\n" file ex)))))))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (flycheck-pos-tip use-package smartparens rainbow-delimiters py-autopep8 pdf-tools multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio git flycheck emmet-mode elpy company-go color-theme-sanityinc-tomorrow auctex))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
