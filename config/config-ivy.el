@@ -9,12 +9,17 @@
 (setq ivy-initial-inputs-alist nil)
 
 
-;;(require-package 'swiper)
-;;(after 'swiper
-;;  (defadvice swiper (before dotemacs activate)
-;;    (setq gc-cons-threshold most-positive-fixnum))
-;;  (defadvice swiper-all (before dotemacs activate)
-;;    (setq gc-cons-threshold most-positive-fixnum)))
+
+;;(after 'ivy
+
+(require-package 'swiper)
+(global-set-key "\C-s" 'swiper)
+(after 'swiper
+  (defadvice swiper (before dotemacs activate)
+    (setq gc-cons-threshold most-positive-fixnum))
+  (defadvice swiper-all (before dotemacs activate)
+    (setq gc-cons-threshold most-positive-fixnum)))
+
 ;;
 ;;
 ;;(require-package 'counsel)

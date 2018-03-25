@@ -98,7 +98,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (all-the-icons-dired dired-sidebar flycheck-pos-tip use-package smartparens rainbow-delimiters py-autopep8 pdf-tools multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio git flycheck emmet-mode elpy company-go color-theme-sanityinc-tomorrow auctex))))
+    (flycheck-pos-tip use-package smartparens rainbow-delimiters py-autopep8 pdf-tools multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio git flycheck emmet-mode elpy company-go color-theme-sanityinc-tomorrow auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
