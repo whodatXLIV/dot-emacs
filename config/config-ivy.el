@@ -2,7 +2,7 @@
 (ivy-mode t)
 (setq ivy-use-virtual-buffers t)
 (setq ivy-virtual-abbreviate 'full)
-(setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+(setq ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
 (setq ivy-height 12)
 (setq ivy-display-style 'fancy)
 (setq ivy-count-format "[%d/%d] ")
