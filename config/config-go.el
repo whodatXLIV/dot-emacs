@@ -16,8 +16,8 @@
     (add-hook 'go-mode-hook (lambda ()
                               (set (make-local-variable 'company-backends) '(company-go)))))
   
-  (require-package 'go-flymake)
   (add-to-list 'load-path "~/Go/src/github.com/dougm/goflymake")
+  (require-package 'go-flymake)
   (require 'go-flymake)
   (require 'go-flycheck)
   )   
