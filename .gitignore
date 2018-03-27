@@ -2,3 +2,10 @@
 elpa
 eshell
 server
+*.DS_Store#
+/#init.el#
+/.mc-lists.el
+/init.log
+/network-security.data
+/recentf
+/texput.log
