@@ -28,6 +28,6 @@
    	     ; C-M space highlights words forward then use par to wrap them
    	     ("C-x C-t" . sp-transpose-hybrid-sexp)))
 
- (set-face-attribute 'highlight nil :background "forest green" :foreground "black")
+ (set-face-attribute 'highlight nil :background "forest green" :foreground "white")
 
   (provide 'config-smartparens)
