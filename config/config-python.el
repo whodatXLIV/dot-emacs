@@ -15,11 +15,13 @@
   (after "company-autoloads"
     (require-package 'company-anaconda)
     (require 'company-anaconda)
-    (add-hook 'python-mode-hook (lambda ()
-				  (set (make-local-variable 'company-backend) '(company-anaconda)))))
+    (add-to-list 'company-backends 'company-anaconda))
 
 
   (require 'anaconda-mode)
+  (add-hook 'python-mode-hook 'anaconda-mode)
+  (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+  
   (require-package 'py-yapf)
   (require 'py-yapf)
   (add-hook 'python-mode-hook 'py-yapf-enable-on-save)

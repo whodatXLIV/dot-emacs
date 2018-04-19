@@ -11,3 +11,4 @@ server
 /texput.log
 /config/#config-go.el#
 /bookmarks
+**/anaconda-mode/
