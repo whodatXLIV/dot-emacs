@@ -17,8 +17,18 @@
     (require 'company-anaconda)
     (add-hook 'python-mode-hook (lambda ()
 				  (set (make-local-variable 'company-backend) '(company-anaconda)))))
-  (require-package 'pylint)
-  (require 'pylint)
+
+
+  (require 'anaconda-mode)
+  (require-package 'py-yapf)
+  (require 'py-yapf)
+  (add-hook 'python-mode-hook 'py-yapf-enable-on-save)
+
+  ;; Flake8 'python -m pip install flake8' for flycheck
+  ;; yapf 'pip -m install yapf' for style with py-yapf
+  ;; need to be downloaded seperately and set paths
+  
+  
 
 
   )
