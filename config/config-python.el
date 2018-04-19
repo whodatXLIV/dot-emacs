@@ -1,8 +1,11 @@
 (/boot/lazy-major-mode "\\.py$" python-mode)
 
 (after 'python-mode
- (setq python-shell-interpreter "python.exe")
- ;;(setq python-shell-interpreter-args "-m IPython --simple-prompt -i")
+
+  (setq-default py-shell-name "ipython"
+		py-ipython-command-args "--simple-prompt -i")
+  
+(setq-default py-which-bufname "IPython")
 
   (after "company-autoloads"
     (require-package 'company-anaconda)
