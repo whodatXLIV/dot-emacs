@@ -17,10 +17,10 @@
                               (set (make-local-variable 'company-backends) '(company-go)))))
   
   (add-to-list 'load-path "~/Go/src/github.com/dougm/goflymake")
-  (require-package 'go-flymake)
-  (require 'go-flymake)
+  ;;(require-package 'go-flymake)
+  ;;(require 'go-flymake)
   (require 'go-flycheck)
-  )   
+  )
 
 
 (provide 'config-go)

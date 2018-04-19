@@ -1,4 +1,5 @@
-;; init.el -- Emacs configuration entry point.
+;;; Commentary:
+;;init.el -- Emacs configuration entry point.
 ;;
 ;; Author: Seth Figueroa <sethamin.7@gmail.com>
 ;;  Many parts taken from:
@@ -8,9 +9,11 @@
 ;;==================================================
 ;;  GENERAL START UP
 ;;==================================================
+;;; Code:
 (setq inhibit-startup-message t)        ; Disable startup message
 (global-linum-mode t) ;; enable line numbers globally
 (show-paren-mode 1)
+
 
 (global-set-key (kbd "C-c <up>") 'windmove-up)
 (global-set-key (kbd "C-c <down>") 'windmove-down)
@@ -87,8 +90,11 @@
     (load themes-file))
 
   (when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
+    (exec-path-from-shell-initialize))
 
+  (use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
 
   (cl-loop for file in (reverse (directory-files-recursively config-directory "\\.el$"))
            do (condition-case ex
@@ -102,7 +108,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (company-anaconda python-mode undo-tree go-flymake swiper org-mode use-package smartparens py-autopep8 pdf-tools multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio flymd flycheck-pos-tip exec-path-from-shell emmet-mode elpy diminish counsel company-go auctex))))
+    (pylint company-anaconda python-mode undo-tree go-flymake swiper org-mode use-package smartparens py-autopep8 pdf-tools multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio flymd flycheck-pos-tip exec-path-from-shell emmet-mode elpy diminish counsel company-go auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
