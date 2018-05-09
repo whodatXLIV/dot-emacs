@@ -14,7 +14,9 @@
 
 (setq ein:jupyter-server-args (list "--no-browser"))
 
+(setq-default ein:completion-backend 'ein:use-company-backend)
 (global-set-key (kbd "C-c C-j") 'ein:jupyter-server-start)
+
 
 (provide 'config-ein)
 ;;; config-EIN.el ends here

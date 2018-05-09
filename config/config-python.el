@@ -7,11 +7,12 @@
 
 (after 'python-mode
 
-  (setq-default py-shell-name "ipython"
-		py-ipython-command-args "--simple-prompt -i")
+  ;; (setq-default py-shell-name "ipython"
+  ;; 		py-ipython-command-args "--simple-prompt -i")
   
-  (setq-default py-which-bufname "IPython")
-  ; don't split windows
+  ;; (setq-default py-which-bufname "IPython")
+
+; don't split windows
   (setq py-split-window-on-execute nil)
 ; try to automagically figure out indentation
   (setq py-smart-indentation t)
