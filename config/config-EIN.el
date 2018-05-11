@@ -12,10 +12,10 @@
 (require-package 's)
 (require-package 'skewer-mode)
 
-(require 'ein)
-(require 'ein-loaddefs)
-(require 'ein-notebook)
-(require 'ein-subpackages)
+;; (require 'ein)
+;; (require 'ein-loaddefs)
+;; (require 'ein-notebook)
+;; (require 'ein-subpackages)
 
 (setq ein:jupyter-server-args (list "--no-browser"))
 
