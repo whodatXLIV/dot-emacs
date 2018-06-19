@@ -16,7 +16,7 @@
     (add-hook 'go-mode-hook (lambda ()
                               (set (make-local-variable 'company-backends) '(company-go)))))
   
-  (add-to-list 'load-path "~/Go/src/github.com/dougm/goflymake")
+  (add-to-list 'load-path "~/Projects/src/github.com/dougm/goflymake")
   (add-hook 'go-mode-hook
           (lambda ()
             (flycheck-mode -1)))
