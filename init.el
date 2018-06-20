@@ -90,7 +90,10 @@
     (load themes-file))
 
   (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize))
+    (exec-path-from-shell-initialize)
+    (setenv "GOPATH" "/Users/sethfigueroa/Projects")
+)
+ 
 
   (use-package flycheck
   :ensure t
