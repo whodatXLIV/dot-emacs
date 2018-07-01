@@ -28,7 +28,7 @@ Emacs buffer are those starting with “*”."
     ((eq major-mode 'python-mode)
      "Python"
      )
-    ((eq major-mode 'magit-mode)
+    ((string-equal "magit:" (substring (buffer-name) 0 6))
      "Magit"
      )
     (t
