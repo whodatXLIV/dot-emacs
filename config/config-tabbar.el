@@ -16,9 +16,6 @@ Those Dired, those user buffer, and those emacs buffer.
 Emacs buffer are those starting with “*”."
   (list
    (cond
-    ((string-equal "*" (substring (buffer-name) 0 1))
-     "Emacs Buffer"
-     )
     ((eq major-mode 'dired-mode)
      "Dired"
      )
@@ -27,6 +24,12 @@ Emacs buffer are those starting with “*”."
      )
     ((eq major-mode 'python-mode)
      "Python"
+     )
+    ((string-equal "*ein:" (substring (buffer-name) 0 5))
+     "Python"
+     )
+    ((string-equal "*" (substring (buffer-name) 0 1))
+     "Emacs Buffer"
      )
     ((string-equal "magit:" (substring (buffer-name) 0 6))
      "Magit"
