@@ -15,13 +15,17 @@
     (require 'company-go)
     (add-hook 'go-mode-hook (lambda ()
                               (set (make-local-variable 'company-backends) '(company-go)))))
-  
+
+  (require-package 'go-playground)
   (add-to-list 'load-path "~/Projects/src/github.com/dougm/goflymake")
+  (add-to-list 'load-path "~/Projects/src/github.com/cweill/gotests")
+  
   (add-hook 'go-mode-hook
           (lambda ()
             (flycheck-mode -1)))
   (require 'go-flymake)
   (require 'go-flycheck)
+  (require 'gotests)
   
   )
 
