@@ -14,3 +14,4 @@ server
 **/anaconda-mode/
 /ac-comphist.dat
 /request/curl-cookie-jar
+/projectile-bookmarks.eld
