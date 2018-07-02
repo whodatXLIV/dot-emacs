@@ -110,7 +110,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (go-playground minimap ace-window avy markdown-mode py-yapf flake8 company-jedi pylint company-anaconda python-mode undo-tree go-flymake swiper org-mode use-package smartparens py-autopep8 pdf-tools multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio flymd flycheck-pos-tip exec-path-from-shell emmet-mode elpy diminish counsel company-go auctex))))
+    (projectile go-playground minimap ace-window avy markdown-mode py-yapf flake8 company-jedi pylint company-anaconda python-mode undo-tree go-flymake swiper org-mode use-package smartparens py-autopep8 pdf-tools multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio flymd flycheck-pos-tip exec-path-from-shell emmet-mode elpy diminish counsel company-go auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
