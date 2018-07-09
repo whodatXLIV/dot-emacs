@@ -22,6 +22,9 @@ Emacs buffer are those starting with “*”."
     ((eq major-mode 'go-mode)
      "Go"
      )
+    ((eq major-mode 'org-mode)
+     "Org"
+     )
     ((eq major-mode 'python-mode)
      "Python"
      )
