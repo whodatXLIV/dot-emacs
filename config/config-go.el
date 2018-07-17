@@ -26,7 +26,7 @@
   (require 'go-flymake)
   (require 'go-flycheck)
   (require 'gotests)
-  
+  (require-package 'go-dlv)  
   )
 
 
