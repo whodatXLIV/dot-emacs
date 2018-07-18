@@ -19,6 +19,12 @@ Emacs buffer are those starting with “*”."
     ((eq major-mode 'dired-mode)
      "Dired"
      )
+    ((string-equal "*eshell"(substring (buffer-name) 0 7))
+     "eshell"
+     )
+    ((string-equal "eshell"(substring (buffer-name) 0 6))
+     "eshell"
+     )
     ((eq major-mode 'go-mode)
      "Go"
      )
