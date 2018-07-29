@@ -1,3 +1,8 @@
+;;; package --- go-mode configuration
+
+;;; Commentary:
+
+;;; Code:
 (/boot/lazy-major-mode "\\.go$" go-mode)
 
 (after 'go-mode
@@ -31,3 +36,4 @@
 
 
 (provide 'config-go)
+;;; config-go.el ends here
