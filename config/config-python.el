@@ -16,10 +16,9 @@
   (setq py-split-window-on-execute nil)
 ; try to automagically figure out indentation
   (setq py-smart-indentation t)
-
+  (ein:jupyter-server-start (executable-find "jupyter") (getenv '"HOME"))
   (after "company-autoloads"
-    (require-package 'company-anaconda)
-    (require 'company-anaconda)
+;    (add-to-list 'company-backends 'company-anaconda)
     (add-to-list 'company-backends 'company-anaconda))
 
 
