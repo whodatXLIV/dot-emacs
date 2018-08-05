@@ -16,3 +16,4 @@ server
 /request/curl-cookie-jar
 /projectile-bookmarks.eld
 /.cask/*
+/projectile.cache
