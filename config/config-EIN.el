@@ -18,8 +18,9 @@
 ;; (require 'ein-subpackages)
 
 (setq ein:jupyter-server-args (list "--no-browser"))
-
-(setq-default ein:completion-backend 'ein:use-company-backend)
+;;(setq ein:use-auto-complete-superpack t)
+;; (add-hook 'ein:connect-mode-hook 'ein:jedi-setup)
+(setq-default ein:completion-backend 'ein:use-ac-jedi-backend)
 (global-set-key (kbd "C-c C-j") 'ein:jupyter-server-start)
 
 

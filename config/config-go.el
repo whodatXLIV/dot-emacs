@@ -15,12 +15,24 @@
   (add-hook 'go-mode-hook '(lambda ()
 			     (local-set-key (kbd "C-c C-k") 'godoc)))
   
-  (after "company-autoloads"
-    (require-package 'company-go)
-    (require 'company-go)
-    (add-hook 'go-mode-hook (lambda ()
-                              (set (make-local-variable 'company-backends) '(company-go)))))
+  ;; (after "company-autoloads"
+  ;;   (require-package 'company-go)
+  ;;   (require 'company-go)
+  ;;   (add-hook 'go-mode-hook (lambda ()
+  ;;                             (set (make-local-variable 'company-backends) '(company-go)))))
 
+  (after "auto-complete-autoloads"
+    (require-package 'go-autocomplete)
+    (require 'go-autocomplete)
+    (defun auto-complete-for-go ()
+      (auto-complete-mode 1))
+    (add-hook 'go-mode-hook 'auto-complete-for-go)
+    )
+
+  (require-package 'go-eldoc)
+  (require 'go-eldoc)
+    (add-hook 'go-mode-hook 'go-eldoc-setup)
+  
   (require-package 'go-playground)
   (add-to-list 'load-path "~/Projects/src/github.com/dougm/goflymake")
   (add-to-list 'load-path "~/Projects/src/github.com/cweill/gotests")
@@ -31,7 +43,7 @@
   (require 'go-flymake)
   (require 'go-flycheck)
   (require 'gotests)
-  ;; (require-package 'go-dlv)  
+  (require-package 'go-dlv)
   )
 
 

@@ -17,3 +17,4 @@ server
 /projectile-bookmarks.eld
 /.cask/*
 /projectile.cache
+/.python-environments/
