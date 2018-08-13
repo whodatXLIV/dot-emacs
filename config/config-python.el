@@ -10,16 +10,16 @@
   (add-hook 'python-mode-hook 'jedi:setup)
   (setq jedi:complete-on-dot t) 
 
- 
   ;; ; don't split windows
   (setq py-split-window-on-execute nil)
 ; try to automagically figure out indentation
   (setq py-smart-indentation t)
-
-  
   (ein:jupyter-server-start (executable-find "jupyter") (getenv '"HOME"))
   
-  (require-package 'py-yapf)
+  (require-package 'anaconda-mode)
+  (require 'anaconda-mode)
+  (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+
   (require 'py-yapf)
   (add-hook 'python-mode-hook 'py-yapf-enable-on-save)
 
