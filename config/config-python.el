@@ -8,12 +8,19 @@
  
   (require-package 'jedi)
   (add-hook 'python-mode-hook 'jedi:setup)
-  (setq jedi:complete-on-dot t) 
+  (setq jedi:complete-on-dot t)
 
   ;; ; don't split windows
   (setq py-split-window-on-execute nil)
 ; try to automagically figure out indentation
-  (setq py-smart-indentation t)
+  ;; (setq py-smart-indentation t)
+  (add-hook 'python-mode-hook
+	    (lambda ()
+		    (setq-default indent-tabs-mode t)
+		    (setq-default tab-width 4)
+		    (setq-default py-indent-tabs-mode t)
+	    (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
+  
   (ein:jupyter-server-start (executable-find "jupyter") (getenv '"HOME"))
   
   (require-package 'anaconda-mode)
@@ -28,7 +35,7 @@
   ;; yapf 'pip -m install yapf' for style with py-yapf
   ;; need to be downloaded seperately and set paths
 
- )  
+ )
 
 
 (provide 'config-python)

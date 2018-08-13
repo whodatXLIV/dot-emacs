@@ -1,14 +1,16 @@
 (when (eq dotemacs-completion-engine 'auto-complete)
   (require-package 'auto-complete)
-
+  (require 'auto-complete)
+  (ac-config-default)
   (setq ac-auto-show-menu t)
-  (setq ac-auto-start t)
+  (setq ac-auto-start 4)
   (setq ac-comphist-file (concat dotemacs-cache-directory "ac-comphist.dat"))
   (setq ac-quick-help-delay 0.3)
   (setq ac-quick-help-height 30)
   (setq ac-show-menu-immediately-on-auto-complete t)
+  (global-set-key [C-tab] 'auto-complete)
+  ;;(define-key ac-completing-map "\r" nil)
 
-  (ac-config-default)
 
   ;; (dolist (mode '(vimrc-mode html-mode stylus-mode))
   ;;   (add-to-list 'ac-modes mode))
