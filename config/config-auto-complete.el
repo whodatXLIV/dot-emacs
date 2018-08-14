@@ -9,13 +9,13 @@
 
   (setq ac-auto-show-menu .8)
   (setq ac-use-menu-map t)
-  (setq ac-auto-start t)
+  (setq ac-auto-start 2)
   (setq ac-comphist-file (concat dotemacs-cache-directory "ac-comphist.dat"))
   (setq ac-quick-help-delay 2)
   (setq ac-quick-help-height 30)
   (setq ac-show-menu-immediately-on-auto-complete nil)
   (global-set-key [C-tab] 'auto-complete)
-  
+
   (set-face-foreground 'ac-completion-face "goldenrod")
   (set-face-underline 'ac-completion-face "goldenrod")
   ;;(define-key ac-completing-map "\r" nil)
