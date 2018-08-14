@@ -2,19 +2,26 @@
   (require-package 'auto-complete)
   (require 'auto-complete)
   (ac-config-default)
-  (setq ac-auto-show-menu t)
-  (setq ac-auto-start 4)
-  (setq ac-comphist-file (concat dotemacs-cache-directory "ac-comphist.dat"))
-  (setq ac-quick-help-delay 0.3)
-  (setq ac-quick-help-height 30)
-  (setq ac-show-menu-immediately-on-auto-complete t)
-  (global-set-key [C-tab] 'auto-complete)
-  ;;(define-key ac-completing-map "\r" nil)
 
+  (defun ac-common-setup ()
+  (setq ac-sources (append ac-sources '(ac-source-filename))))
+  ;; (add-to-list 'ac-sources 'ac-source-filename)
+
+  (setq ac-auto-show-menu .8)
+  (setq ac-use-menu-map t)
+  (setq ac-auto-start t)
+  (setq ac-comphist-file (concat dotemacs-cache-directory "ac-comphist.dat"))
+  (setq ac-quick-help-delay 2)
+  (setq ac-quick-help-height 30)
+  (setq ac-show-menu-immediately-on-auto-complete nil)
+  (global-set-key [C-tab] 'auto-complete)
+  
+  (set-face-foreground 'ac-completion-face "goldenrod")
+  (set-face-underline 'ac-completion-face "goldenrod")
+  ;;(define-key ac-completing-map "\r" nil)
 
   ;; (dolist (mode '(vimrc-mode html-mode stylus-mode))
   ;;   (add-to-list 'ac-modes mode))
-
   (after 'linum
     (ac-linum-workaround))
 
