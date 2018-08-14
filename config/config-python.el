@@ -21,9 +21,10 @@
   ;; (setq py-smart-indentation t)
   (add-hook 'python-mode-hook
 	    (lambda ()
-		    (setq-default indent-tabs-mode t)
-		    (setq-default tab-width 4)
-		    (setq-default py-indent-tabs-mode t)
+		  (setq-default indent-tabs-mode nil)
+		  (setq python-indent-offset 4)
+		;;     (setq-default tab-width 4)
+		;;     (setq-default py-indent-tabs-mode t)
 	    (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
 
   ;;(ein:jupyter-server-start (executable-find "jupyter") (getenv '"HOME"))
