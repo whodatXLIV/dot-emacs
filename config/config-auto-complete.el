@@ -7,9 +7,9 @@
   (setq ac-sources (append ac-sources '(ac-source-filename))))
   ;; (add-to-list 'ac-sources 'ac-source-filename)
 
-  (setq ac-auto-show-menu .8)
+  (setq ac-auto-show-menu .1)
   (setq ac-use-menu-map t)
-  (setq ac-auto-start 2)
+  (setq ac-auto-start nil)
   (setq ac-comphist-file (concat dotemacs-cache-directory "ac-comphist.dat"))
   (setq ac-quick-help-delay 2)
   (setq ac-quick-help-height 30)
