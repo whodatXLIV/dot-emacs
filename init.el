@@ -21,6 +21,8 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
+(when (member "Hack" (font-family-list)) (set-frame-font "Hack-8" t t))
+
 ;;==================================================
 
 (eval-when-compile (require 'cl))
