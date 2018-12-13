@@ -7,19 +7,26 @@
   (setq org-todo-keywords
 	'((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELLED")))
 
-  (setq org-directory '("~/Google\ Drive/Org"))  
-  (setq org-agenda-files org-directory)
-  (setq org-archive-location '("~/Google Drive/Org~/Google\ Drive/Org/Archive"))
-  (setq org-default-notes-file '("~/Google Drive/Org/notes.org"))
 
   (setq org-capture-templates
-	'(("t" "Todo" entry (file+headline "~/Google Drive/Org/notes.org" "Tasks")
-	   "* TODO %?\n  %i\n  %a")))
+	'(
+	  ("t" "Todo" entry (file+headline "~/Documents/todo.org" "Tasks")
+	   "* TODO %?\n  %i\n  %a\n")
+	  ("s" "School" entry (file+headline "~/Documents/todo.org" "School")
+	   "* TODO %?\n %i\n %a\n")
+	  )
+	)
   
   (setq org-startup-folded t)
   (setq org-startup-indented t)
   (setq org-log-done t)
   
   )
+
+(setq org-directory '("~/Documents"))  
+(setq org-agenda-files '("~/Documents/todo.org"))
+(setq org-archive-location '("~/Documents/archive"))
+(setq org-default-notes-file '("~/Documents/notes.org"))
+
 
 (provide 'config-org)

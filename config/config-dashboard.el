@@ -25,7 +25,7 @@
 ;; 1, 2 or 3 which displays one of the text banners
 ;; "path/to/your/image.png which displays whatever image you would prefer
 
-(setq dashboard-items '((recents  . 5)
+(setq dashboard-items '((recents  . 15)
                        (projects . 5)
                       ))
 
