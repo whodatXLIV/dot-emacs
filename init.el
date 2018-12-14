@@ -119,7 +119,8 @@
     ("~/Documents/todo.org" "~/Documents/Extend_Target/Extend_Target.org")))
  '(package-selected-packages
    (quote
-    (org-noter pdf-view anaconda-mode go-eldoc go-autocomplete pdf-tools latex-mode LaTeX-mode go-dlv projectile go-playground minimap ace-window avy markdown-mode py-yapf flake8 company-jedi pylint company-anaconda python-mode undo-tree go-flymake swiper org-mode use-package smartparens py-autopep8 multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio flymd flycheck-pos-tip exec-path-from-shell emmet-mode elpy diminish counsel company-go auctex))))
+    (org-noter pdf-view anaconda-mode go-eldoc go-autocomplete pdf-tools latex-mode LaTeX-mode go-dlv projectile go-playground minimap ace-window avy markdown-mode py-yapf flake8 company-jedi pylint company-anaconda python-mode undo-tree go-flymake swiper org-mode use-package smartparens py-autopep8 multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio flymd flycheck-pos-tip exec-path-from-shell emmet-mode elpy diminish counsel company-go auctex)))
+ '(zoom-mode t nil (zoom)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

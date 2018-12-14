@@ -31,7 +31,8 @@
   ;; view generated PDF with pdf-tools.
 
   ;; (add-to-list 'TeX-view-program-list '(("PDF Tools" "TeX-pdf-tools-sync-view")))
- 	     ;; '(output-pdf "PDF Tools"))
+  ;; '(output-pdf "PDF Tools"))
+  (setq TeX-source-correlate-mode t)
   (setq TeX-source-correlate-method 'synctex)
   (setq TeX-view-program-selection '((output-pdf "pdf-tools"))
 	TeX-source-correlate-start-server t)
