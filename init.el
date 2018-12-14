@@ -1,3 +1,4 @@
+
 ;;; Commentary:
 ;;init.el -- Emacs configuration entry point.
 ;;
@@ -105,6 +106,9 @@
                   (load (file-name-sans-extension file))
                 ('error (with-current-buffer "*scratch*"
                           (insert (format "[INIT ERROR]\n%s\n%s\n\n" file ex)))))))
+
+(pdf-tools-install)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -115,7 +119,7 @@
     ("~/Documents/todo.org" "~/Documents/Extend_Target/Extend_Target.org")))
  '(package-selected-packages
    (quote
-    (pdf-view anaconda-mode go-eldoc go-autocomplete pdf-tools latex-mode LaTeX-mode go-dlv projectile go-playground minimap ace-window avy markdown-mode py-yapf flake8 company-jedi pylint company-anaconda python-mode undo-tree go-flymake swiper org-mode use-package smartparens py-autopep8 multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio flymd flycheck-pos-tip exec-path-from-shell emmet-mode elpy diminish counsel company-go auctex))))
+    (org-noter pdf-view anaconda-mode go-eldoc go-autocomplete pdf-tools latex-mode LaTeX-mode go-dlv projectile go-playground minimap ace-window avy markdown-mode py-yapf flake8 company-jedi pylint company-anaconda python-mode undo-tree go-flymake swiper org-mode use-package smartparens py-autopep8 multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio flymd flycheck-pos-tip exec-path-from-shell emmet-mode elpy diminish counsel company-go auctex))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
