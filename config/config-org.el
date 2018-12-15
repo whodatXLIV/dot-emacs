@@ -1,6 +1,3 @@
-
-
-
 (require-package 'org-bullets)
 
 (after 'org
@@ -44,7 +41,7 @@
   ;;; BEAUTIFYING ORG
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
-  (setq org-bullets-bullet-list '(" " " " "-")
+  (setq org-bullets-bullet-list '(" " "➢" "⊛" "⊛" "⊛" "⊛" "⊛" "⊛")
 	org-ellipsis "..."
 	org-hide-emphasis-markers t
 	org-pretty-entities 1
@@ -60,26 +57,61 @@
     
     
   (custom-theme-set-faces 'user
-                          ;; `(org-level-8 ((t (,@headline ,@variable-tuple))))
-                          ;; `(org-level-7 ((t (,@headline ,@variable-tuple))))
-                          ;; `(org-level-6 ((t (,@headline ,@variable-tuple))))
-                          ;; `(org-level-5 ((t (,@headline ,@variable-tuple))))
-                          ;; `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
-                          ;; `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.2))))
-                          `(org-level-2 ((t (:font "Courier New" :weight regular :foreground "salmon" :height 1.4))))
-                          `(org-level-1 ((t (:font "American Typewriter" :weight regular :foreground "#70c0b1" :height 1.7))))
-                          ;; `(org-document-title ((t (,@headline ,@variable-tuple :height 1.5 :underline nil))))
+                          `(org-level-8 ((t
+					  (:font "Verdana" :weight regular :foreground "gray50" )
+					  )))
+                          `(org-level-7 ((t
+					  (:font "Verdana" :weight regular :foreground "gray60" )
+					  )))
+                          `(org-level-6 ((t
+					  (:font "Verdana" :weight regular :foreground "DarkOliveGreen" )
+					  )))
+                          `(org-level-5 ((t
+					  (:font "Verdana" :weight regular :foreground "orange3" )
+					  )))
+                          `(org-level-4 ((t
+					  (:font "Verdana" :weight regular :foreground "SlateBlue3" :height 1.1)
+					  )))
+                          `(org-level-3 ((t
+					  (:font "Verdana" :weight regular :foreground "SkyBlue" :height 1.2)
+					  )))
+                          `(org-level-2 ((t (:font "Courier New"
+						 :weight regular
+						 :underline t
+						 :foreground "salmon"
+						 :height 1.3
+						 ))))
+                          `(org-level-1 ((t (:font "American Typewriter"
+						 :weight regular
+						 :background "gray15"
+						 :foreground "#70c0b1"
+						 :height 1.5
+						 ))))
+
+  			  '(org-todo ((t (:foreground "OrangeRed"
+						    :background "gray10"
+						    :box (:color "firebrick" :line-width 2 :style none)
+						    :height 1
+						    ))))
+			  '(org-done ((t (:foreground "lime green"
+						    :background "gray10"
+						    :box (:color "forest green" :line-width 2 :style none)
+						    :height 1
+						    ))))
+
+			  '(org-headline-done ((t (:inherit default :strike-through t))))
 			  
-			  '(org-block                 ((t (:inherit default))))
-			  '(org-document-info         ((t (:foreground "dark orange"))))
-			  '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
-			  '(org-link                  ((t (:foreground "royal blue" :underline t))))
-			  '(org-meta-line             ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-			  '(org-property-value        ((t (:inherit fixed-pitch))) t)
-			  '(org-special-keyword       ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-			  '(org-tag                   ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
-			  '(org-verbatim              ((t (:inherit (shadow fixed-pitch)))))
-			  )
+                          ;; `(org-document-title ((t (,@headline ,@variable-tuple :height 1.5 :underline nil))))
+  			  '(org-block                 ((t (:inherit default))))
+  			  '(org-document-info         ((t (:foreground "dark orange"))))
+  			  '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+  			  '(org-link                  ((t (:foreground "royal blue" :underline t))))
+  			  '(org-meta-line             ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+  			  '(org-property-value        ((t (:inherit fixed-pitch))) t)
+  			  '(org-special-keyword       ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+  			  '(org-tag                   ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
+  			  '(org-verbatim              ((t (:inherit (shadow fixed-pitch)))))
+  			  )
     
   
   
@@ -97,7 +129,10 @@
       org-reverse-note-order t
       org-fast-tag-selection-single-key (quote expert)
       org-log-into-drawer t
- )
+      )
+
+(plist-put org-format-latex-options :scale 1.5)
+
 
 
 (provide 'config-org)
