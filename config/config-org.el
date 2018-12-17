@@ -23,7 +23,7 @@
   (setq org-capture-templates
 	'(
 	  ("t" "Todo" entry (file+headline "~/Documents/todo.org" "Tasks")
-	   "* TODO %a\n %?\n %T\n")
+	   "* TODO %? %A\n\n %T\n\n")
 	  ;; ("n" "Note" entry (file+headline "~/Documents/Notes.org" "Work Notes")
 	  ;;  "* NOTES %i\n %?\n %a\n %T\n")
 	  )
@@ -42,7 +42,7 @@
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
   (setq org-bullets-bullet-list '(" " "➢" "⊛" "⊛" "⊛" "⊛" "⊛" "⊛")
-	org-ellipsis "..."
+	org-ellipsis "↵"
 	org-hide-emphasis-markers t
 	org-pretty-entities 1
 	org-pretty-entities-include-sub-superscripts nil
@@ -99,7 +99,7 @@
 						    :height 1
 						    ))))
 
-			  '(org-headline-done ((t (:inherit default :strike-through t))))
+			  ;; '(org-headline-done ((t (:inherit default :strike-through t))))
 			  
                           ;; `(org-document-title ((t (,@headline ,@variable-tuple :height 1.5 :underline nil))))
   			  '(org-block                 ((t (:inherit default))))
@@ -118,7 +118,7 @@
 
   (setq org-directory '("~/Documents")
 	org-agenda-files '("~/Documents/todo.org")
-	org-archive-location '("~/Documents/archive")
+	;; org-archive-location '("~/Documents/archive/")
 	org-default-notes-file '("~/Documents/notes.org")))
 
 
@@ -129,9 +129,10 @@
       org-reverse-note-order t
       org-fast-tag-selection-single-key (quote expert)
       org-log-into-drawer t
+      org-image-actual-width nil
       )
 
-(plist-put org-format-latex-options :scale 1.5)
+;; (plist-put org-format-latex-options :scale 1.5)
 
 
 
