@@ -107,7 +107,8 @@
                 ('error (with-current-buffer "*scratch*"
                           (insert (format "[INIT ERROR]\n%s\n%s\n\n" file ex)))))))
 
-(pdf-tools-install)
+;; (pdf-tools-install)
+(pdf-loader-install) ;; Provides better start up time
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
