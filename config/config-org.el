@@ -5,7 +5,7 @@
   (global-set-key "\C-ca" 'org-agenda)
   (global-set-key "\C-cc" 'org-capture)
   (global-set-key "\C-cb" 'org-switchb)
-  
+
   (setq org-todo-keywords
 	'((sequence "TODO(t!)" "IN-PROGRESS(p!/@)" "WAITING(w!/@)" "|" "DONE(d)")))
 
@@ -19,7 +19,7 @@
 			("TRIPP" . ?t)
 			)
 	)
-  
+
   (setq org-capture-templates
 	'(
 	  ("t" "Todo" entry (file+headline "~/Documents/todo.org" "Tasks")
@@ -28,7 +28,7 @@
 	  ;;  "* NOTES %i\n %?\n %a\n %T\n")
 	  )
 	)
-  
+
   (setq org-startup-folded t
 	org-startup-indented t
 	org-log-done t
@@ -52,10 +52,10 @@
 	org-fontify-quote-and-verse-blocks t
 	)
 
-  
 
-    
-    
+
+
+
   (custom-theme-set-faces 'user
                           `(org-level-8 ((t
 					  (:font "Verdana" :weight regular :foreground "gray50" )
@@ -100,7 +100,7 @@
 						    ))))
 
 			  ;; '(org-headline-done ((t (:inherit default :strike-through t))))
-			  
+
                           ;; `(org-document-title ((t (,@headline ,@variable-tuple :height 1.5 :underline nil))))
   			  '(org-block                 ((t (:inherit default))))
   			  '(org-document-info         ((t (:foreground "dark orange"))))
@@ -112,9 +112,9 @@
   			  '(org-tag                   ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
   			  '(org-verbatim              ((t (:inherit (shadow fixed-pitch)))))
   			  )
-    
-  
-  
+
+
+
 
   (setq org-directory '("~/Documents")
 	org-agenda-files '("~/Documents/todo.org")
@@ -130,6 +130,7 @@
       org-fast-tag-selection-single-key (quote expert)
       org-log-into-drawer t
       org-image-actual-width nil
+      org-export-with-drawers t
       )
 
 ;; (plist-put org-format-latex-options :scale 1.5)
