@@ -15,6 +15,7 @@
 			("BRITTON" . ?b)
 			("DAN" . ?d)
 			("REZA" . ?r)
+			("NATHAN" . ?n)
 			("MALCOLM" . ?m)
 			("TRIPP" . ?t)
 			)
