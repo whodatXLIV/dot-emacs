@@ -95,7 +95,7 @@
     (exec-path-from-shell-initialize)
     (setenv "GOPATH" "/Users/sethfigueroa/Projects")
 )
- 
+
 
   (use-package flycheck
   :ensure t
@@ -120,7 +120,7 @@
     ("~/Documents/todo.org" "~/Documents/Extend_Target/Extend_Target.org")))
  '(package-selected-packages
    (quote
-    (org-bullets org-noter pdf-view anaconda-mode go-eldoc go-autocomplete pdf-tools latex-mode LaTeX-mode go-dlv projectile go-playground minimap ace-window avy markdown-mode py-yapf flake8 company-jedi pylint company-anaconda python-mode undo-tree go-flymake swiper org-mode use-package smartparens py-autopep8 multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio flymd flycheck-pos-tip exec-path-from-shell emmet-mode elpy diminish counsel company-go auctex)))
+    (php-mode image+ org-bullets org-noter pdf-view anaconda-mode go-eldoc go-autocomplete pdf-tools latex-mode LaTeX-mode go-dlv projectile go-playground minimap ace-window avy markdown-mode py-yapf flake8 company-jedi pylint company-anaconda python-mode undo-tree go-flymake swiper org-mode use-package smartparens py-autopep8 multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio flymd flycheck-pos-tip exec-path-from-shell emmet-mode elpy diminish counsel company-go auctex)))
  '(zoom-mode t nil (zoom))
  '(zoom-size (quote (0.618 . 0.618))))
 
@@ -129,4 +129,22 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(org-block ((t (:inherit default))))
+ '(org-document-info ((t (:foreground "dark orange"))))
+ '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+ '(org-done ((t (:foreground "lime green" :background "gray10" :box (:color "forest green" :line-width 2 :style none) :height 1))))
+ '(org-level-1 ((t (:font "American Typewriter" :weight regular :background "gray15" :foreground "#70c0b1" :height 1.5))))
+ '(org-level-2 ((t (:font "Courier New" :weight regular :underline t :foreground "salmon" :height 1.3))))
+ '(org-level-3 ((t (:font "Verdana" :weight regular :foreground "SkyBlue" :height 1.2))))
+ '(org-level-4 ((t (:font "Verdana" :weight regular :foreground "SlateBlue3" :height 1.1))))
+ '(org-level-5 ((t (:font "Verdana" :weight regular :foreground "orange3"))))
+ '(org-level-6 ((t (:font "Verdana" :weight regular :foreground "DarkOliveGreen"))))
+ '(org-level-7 ((t (:font "Verdana" :weight regular :foreground "gray60"))))
+ '(org-level-8 ((t (:font "Verdana" :weight regular :foreground "gray50"))))
+ '(org-link ((t (:foreground "royal blue" :underline t))))
+ '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+ '(org-property-value ((t (:inherit fixed-pitch))) t)
+ '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+ '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
+ '(org-todo ((t (:foreground "OrangeRed" :background "gray10" :box (:color "firebrick" :line-width 2 :style none) :height 1))))
+ '(org-verbatim ((t (:inherit (shadow fixed-pitch))))))
