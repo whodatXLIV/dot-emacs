@@ -34,6 +34,15 @@ Emacs buffer are those starting with “*”."
     ((string-equal "*ein:" (substring (buffer-name) 0 5))
      "Python"
      )
+    ((string-equal "*Pyth" (substring (buffer-name) 0 5))
+     "Python"
+     )
+    ((eq major-mode 'php-mode)
+     "PHP"
+     )
+    ((string-equal "*PHP*" (substring (buffer-name) 0 5))
+     "PHP"
+     )
     ((string-equal "*" (substring (buffer-name) 0 1))
      "Emacs Buffer"
      )
