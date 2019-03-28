@@ -12,7 +12,14 @@
   (setq jedi:tooltip-method nil)
   (setq jedi:get-in-function-call-delay 1000000)
 
+
   (global-set-key [C-tab] 'auto-complete)
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (local-set-key (kbd "C-c e") 'python-shell-send-buffer)))
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (local-set-key (kbd "C-c p") 'run-python)))
   ;; ;; ; don't split windows
   ;; (add-to-list 'ac-sources 'ac-source-jedi-direct)
 
