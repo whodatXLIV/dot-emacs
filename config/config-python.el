@@ -6,20 +6,26 @@
 (/boot/lazy-major-mode "\\.py$" python-mode)
 (after 'python-mode
 
-  (require-package 'jedi)
-  (add-hook 'python-mode-hook 'jedi:setup)
-  (setq jedi:complete-on-dot t)
-  (setq jedi:tooltip-method nil)
-  (setq jedi:get-in-function-call-delay 1000000)
+  (require-package 'pyenv-mode)
+  ;; (require-package 'jedi)
+  ;; (add-hook 'python-mode-hook 'jedi:setup)
+  ;; (setq jedi:complete-on-dot t)
+  ;; (setq jedi:tooltip-method nil)
+  ;; (setq jedi:get-in-function-call-delay 1000000)
 
 
-  (global-set-key [C-tab] 'auto-complete)
+  ;; (global-set-key [C-tab] 'auto-complete)
   (add-hook 'python-mode-hook
             (lambda ()
               (local-set-key (kbd "C-c e") 'python-shell-send-buffer)))
   (add-hook 'python-mode-hook
             (lambda ()
               (local-set-key (kbd "C-c p") 'run-python)))
+
+  ;; (add-hook 'python-mode-hook
+  ;;           (lambda ()
+  ;;             (local-set-key [C-tab] 'anaconda-mode-complete)))
+
   ;; ;; ; don't split windows
   ;; (add-to-list 'ac-sources 'ac-source-jedi-direct)
 
@@ -43,7 +49,6 @@
   (require 'py-yapf)
   (add-hook 'python-mode-hook 'py-yapf-enable-on-save)
 
-  (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
   ;; Flake8 'python -m pip install flake8' for flycheck
   ;; yapf 'pip -m install yapf' for style with py-yapf
   ;; need to be downloaded seperately and set paths
