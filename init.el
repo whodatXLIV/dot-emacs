@@ -108,7 +108,10 @@
            do (condition-case ex
                   (load (file-name-sans-extension file))
                 ('error (with-current-buffer "*scratch*"
-                          (insert (format "[INIT ERROR]\n%s\n%s\n\n" file ex)))))))
+                          (insert (format "[INIT ERROR]\n%s\n%s\n\n" file ex))))))
+
+  (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
+  )
 
 ;; (pdf-tools-install)
 (pdf-loader-install) ;; Provides better start up time
@@ -123,7 +126,7 @@
     ("~/Documents/todo.org" "~/Documents/Extend_Target/Extend_Target.org")))
  '(package-selected-packages
    (quote
-    (tern-auto-complete tern js2-refactor pyenv-mode json-navigator scratch csv-mode php-mode image+ org-bullets org-noter pdf-view anaconda-mode go-eldoc go-autocomplete pdf-tools latex-mode LaTeX-mode go-dlv projectile go-playground minimap ace-window avy markdown-mode py-yapf flake8 company-jedi pylint company-anaconda python-mode undo-tree go-flymake swiper org-mode use-package smartparens py-autopep8 multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio flymd flycheck-pos-tip exec-path-from-shell emmet-mode elpy diminish counsel company-go auctex)))
+    (xref-js2 tern-auto-complete tern js2-refactor pyenv-mode json-navigator scratch csv-mode php-mode image+ org-bullets org-noter pdf-view anaconda-mode go-eldoc go-autocomplete pdf-tools latex-mode LaTeX-mode go-dlv projectile go-playground minimap ace-window avy markdown-mode py-yapf flake8 company-jedi pylint company-anaconda python-mode undo-tree go-flymake swiper org-mode use-package smartparens py-autopep8 multiple-cursors magit latex-preview-pane js2-mode jedi golden-ratio flymd flycheck-pos-tip exec-path-from-shell emmet-mode elpy diminish counsel company-go auctex)))
  '(zoom-mode t nil (zoom))
  '(zoom-size (quote (0.618 . 0.618))))
 
