@@ -1,6 +1,6 @@
-(require-package 'org-bullets)
 
 (after 'org
+  (require-package 'org-bullets)
   (global-set-key "\C-cl" 'org-store-link)
   (global-set-key "\C-ca" 'org-agenda)
   (global-set-key "\C-cc" 'org-capture)
@@ -77,28 +77,28 @@
 					  (:font "Verdana" :weight regular :foreground "SkyBlue" :height 1.2)
 					  )))
                           `(org-level-2 ((t (:font "Courier New"
-						 :weight regular
-						 :underline t
-						 :foreground "salmon"
-						 :height 1.3
-						 ))))
+						   :weight regular
+						   :underline t
+						   :foreground "salmon"
+						   :height 1.3
+						   ))))
                           `(org-level-1 ((t (:font "American Typewriter"
-						 :weight regular
-						 :background "gray15"
-						 :foreground "#70c0b1"
-						 :height 1.5
-						 ))))
+						   :weight regular
+						   :background "gray15"
+						   :foreground "#70c0b1"
+						   :height 1.5
+						   ))))
 
   			  '(org-todo ((t (:foreground "OrangeRed"
-						    :background "gray10"
-						    :box (:color "firebrick" :line-width 2 :style none)
-						    :height 1
-						    ))))
+						      :background "gray10"
+						      :box (:color "firebrick" :line-width 2 :style none)
+						      :height 1
+						      ))))
 			  '(org-done ((t (:foreground "lime green"
-						    :background "gray10"
-						    :box (:color "forest green" :line-width 2 :style none)
-						    :height 1
-						    ))))
+						      :background "gray10"
+						      :box (:color "forest green" :line-width 2 :style none)
+						      :height 1
+						      ))))
 
 			  ;; '(org-headline-done ((t (:inherit default :strike-through t))))
 
@@ -120,19 +120,20 @@
   (setq org-directory '("~/Documents")
 	org-agenda-files '("~/Documents/todo.org")
 	;; org-archive-location '("~/Documents/archive/")
-	org-default-notes-file '("~/Documents/notes.org")))
+	org-default-notes-file '("~/Documents/notes.org"))
 
 
-(setq org-agenda-ndays 7
-      org-deadline-warning-days 10
-      org-agenda-show-all-dates t
-      org-agenda-start-on-weekday nil
-      org-reverse-note-order t
-      org-fast-tag-selection-single-key (quote expert)
-      org-log-into-drawer t
-      org-image-actual-width nil
-      org-export-with-drawers t
-      )
+  (setq org-agenda-ndays 7
+	org-deadline-warning-days 10
+	org-agenda-show-all-dates t
+	org-agenda-start-on-weekday nil
+	org-reverse-note-order t
+	org-fast-tag-selection-single-key (quote expert)
+	org-log-into-drawer t
+	org-image-actual-width nil
+	org-export-with-drawers t
+	)
+  )
 
 ;; (plist-put org-format-latex-options :scale 1.5)
 

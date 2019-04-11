@@ -27,6 +27,19 @@
 (setq mark-ring-max 2)
 (setq global-mark-ring-max 2)
 
+;; Garbage collect
+
+(defun my-minibuffer-setup-hook ()
+  "Set high gc when minibuffer is open."
+  (setq gc-cons-threshold (* 256 1024 1024)))
+
+(defun my-minibuffer-exit-hook ()
+  "Set low GC when minibuffer exits."
+  (setq gc-cons-threshold 800000))
+
+(add-hook 'minibuffer-setup-hook 'my-minibuffer-setup-hook)
+(add-hook 'minibuffer-exit-hook 'my-minibuffer-exit-hook)
+
 ;;==================================================
 
 (eval-when-compile (require 'cl))
@@ -37,7 +50,7 @@
               (let ((elapsed (float-time (time-subtract (current-time) emacs-start-time))))
                 (message "[Emacs initialized in %.3fs]" elapsed)))))
 
-(let ((gc-cons-threshold (* 256 1024 1024))
+(let ((gc-cons-threshold (* 2 1024 1024 1024))
       (file-name-handler-alist nil)
       (core-directory (concat user-emacs-directory "core/"))
       (config-directory (concat user-emacs-directory "config/"))
