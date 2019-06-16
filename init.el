@@ -1,4 +1,3 @@
-
 ;;; Commentary:
 ;;init.el -- Emacs configuration entry point.
 ;;
@@ -27,6 +26,8 @@
 (setq mark-ring-max 2)
 (setq global-mark-ring-max 2)
 
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
 ;; Garbage collect
 
 (defun my-minibuffer-setup-hook ()

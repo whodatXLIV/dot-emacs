@@ -17,7 +17,7 @@
   ;; (global-set-key [C-tab] 'auto-complete)
   (add-hook 'python-mode-hook
             (lambda ()
-              (local-set-key (kbd "C-c e") 'python-shell-send-buffer)))
+              (local-set-key (kbd "C-c C-c") 'python-shell-send-buffer)))
   (add-hook 'python-mode-hook
             (lambda ()
               (local-set-key (kbd "C-c p") 'run-python)))
