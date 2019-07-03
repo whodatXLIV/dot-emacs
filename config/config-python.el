@@ -5,7 +5,7 @@
 ;;; Code:
 (/boot/lazy-major-mode "\\.py$" python-mode)
 (after 'python-mode
-
+  (setq python-shell-interpreter "python3")
   (require-package 'pyenv-mode)
   ;; (require-package 'jedi)
   ;; (add-hook 'python-mode-hook 'jedi:setup)

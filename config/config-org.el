@@ -133,6 +133,19 @@
 	org-image-actual-width nil
 	org-export-with-drawers t
 	)
+
+  ;; Backend for HTML Table export
+
+  (require 'ox-html)
+  (defun ox-mrkup-filter-bold
+      (text back-end info)
+    "Markup TEXT as <bold>TEXT</bold>. Ignore BACK-END and INFO."
+    (format "<bold>%s</bold>" text))
+
+  (org-export-define-derived-backend 'htmlTable 'html
+    :filters-alist
+    '((:filter-body . ox-mrkup-filter-body)
+      ))
   )
 
 ;; (plist-put org-format-latex-options :scale 1.5)
