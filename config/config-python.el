@@ -45,6 +45,10 @@
   (require-package 'anaconda-mode)
   (add-hook 'python-mode-hook 'anaconda-mode)
   (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+  (add-hook 'python-mode-hook (lambda ()
+                                (setq anaconda-mode-localhost-address "localhost")
+                                )
+            )
 
   (require 'py-yapf)
   (add-hook 'python-mode-hook 'py-yapf-enable-on-save)
