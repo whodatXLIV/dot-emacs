@@ -122,15 +122,28 @@ Emacs buffer are those starting with “*”."
 
 (setq tabbar-use-images nil)
 
-
+(defun tabbar-move-group-backward ()
+  "My version of keeping groups visible."
+  (interactive)
+  (tabbar-backward-tab)
+  (tabbar-press-home)
+  )
+(defun tabbar-move-group-forward ()
+  "My version of keeping groups visible."
+  (interactive)
+  (tabbar-forward-tab)
+  (tabbar-press-home)
+  )
 
 (global-set-key (kbd "C-x <up>") 'tabbar-press-home)
 (global-set-key (kbd "C-x <left>") 'tabbar-backward-tab)
 (global-set-key (kbd "C-x <right>") 'tabbar-forward-tab)
 (global-set-key (kbd "C-x <down>") 'tabbar-press-scroll-right)
+(global-set-key (kbd "C-S-<left>") 'tabbar-move-group-backward)
+(global-set-key (kbd "C-S-<right>") 'tabbar-move-group-forward)
 ;; Key sequences "C-S-PgUp" and "C-S-PgDn" move the current tab to the left and to the right.
-(global-set-key (kbd "C-S-<left>") 'tabbar-move-current-tab-one-place-left)
-(global-set-key (kbd "C-S-<right>") 'tabbar-move-current-tab-one-place-right)
+;; (global-set-key (kbd "C-S-<left>") 'tabbar-move-current-tab-one-place-left)
+;; (global-set-key (kbd "C-S-<right>") 'tabbar-move-current-tab-one-place-right)
 
 (provide 'config-tabbar)
 ;;; config-tabbar.el ends here
