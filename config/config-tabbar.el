@@ -122,6 +122,8 @@ Emacs buffer are those starting with “*”."
 
 (setq tabbar-use-images nil)
 
+
+
 (global-set-key (kbd "C-x <up>") 'tabbar-press-home)
 (global-set-key (kbd "C-x <left>") 'tabbar-backward-tab)
 (global-set-key (kbd "C-x <right>") 'tabbar-forward-tab)
