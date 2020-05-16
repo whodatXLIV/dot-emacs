@@ -18,3 +18,4 @@ server
 /.cask/*
 /projectile.cache
 /.python-environments/
+/tramp
