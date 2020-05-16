@@ -50,8 +50,11 @@
                                 )
             )
 
-  (require 'py-yapf)
-  (add-hook 'python-mode-hook 'py-yapf-enable-on-save)
+  ;; (require 'py-yapf)
+  ;; (add-hook 'python-mode-hook 'py-yapf-enable-on-save)
+
+  (require 'yapfify)
+  (add-hook 'python-mode-hook 'yapf-mode)
 
   ;; Flake8 'python -m pip install flake8' for flycheck
   ;; yapf 'pip -m install yapf' for style with py-yapf
