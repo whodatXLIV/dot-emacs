@@ -111,6 +111,8 @@
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)
     (setenv "GOPATH" "/Users/sethfigueroa/Projects")
+    (setq mac-option-modifier 'none
+          mac-command-modifier 'meta)
 )
 
 
@@ -140,7 +142,7 @@
     ("~/Documents/todo.org" "~/Documents/Extend_Target/Extend_Target.org")))
  '(package-selected-packages
    (quote
-    (sane-term anaconda-mode tramp xref-js2 tern-auto-complete tern pyenv-mode json-navigator csv-mode image+ org-bullets pdf-view go-eldoc go-autocomplete latex-mode LaTeX-mode go-dlv go-playground minimap ace-window py-yapf flake8 company-jedi pylint company-anaconda undo-tree go-flymake org-mode py-autopep8 latex-preview-pane jedi golden-ratio flymd flycheck-pos-tip emmet-mode elpy diminish company-go auctex)))
+    (sane-term anaconda-mode tramp xref-js2 tern-auto-complete tern pyenv-mode json-navigator csv-mode image+ pdf-view go-eldoc go-autocomplete latex-mode LaTeX-mode ace-window py-yapf flake8 company-jedi pylint company-anaconda go-flymake org-mode py-autopep8 flymd flycheck-pos-tip emmet-mode elpy diminish company-go auctex)))
  '(zoom-mode t nil (zoom))
  '(zoom-size (quote (0.618 . 0.618))))
 
