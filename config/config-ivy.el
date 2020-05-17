@@ -7,7 +7,8 @@
 (setq ivy-display-style 'fancy)
 (setq ivy-count-format "[%d/%d] ")
 (setq ivy-initial-inputs-alist nil)
-
+(setq ivy-use-selectable-prompt t)
+(setq ivy-magic-slash-non-match-action 'ivy-magic-slash-non-match-create)
 
 
 (require-package 'swiper)
@@ -19,8 +20,8 @@
     (setq gc-cons-threshold most-positive-fixnum)))
 
 (require-package 'counsel)
-
-(global-set-key (kbd "M-x") 'counsel-M-x)
+(require-package 'ivy-hydra)
+;; (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 
 (global-set-key (kbd "C-c f") 'counsel-describe-function)
