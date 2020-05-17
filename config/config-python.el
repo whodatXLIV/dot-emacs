@@ -53,7 +53,7 @@
   ;; (require 'py-yapf)
   ;; (add-hook 'python-mode-hook 'py-yapf-enable-on-save)
 
-  (require 'yapfify)
+  (require-package 'yapfify)
   (add-hook 'python-mode-hook 'yapf-mode)
 
   ;; Flake8 'python -m pip install flake8' for flycheck
