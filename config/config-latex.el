@@ -41,6 +41,12 @@
           #'TeX-revert-document-buffer)
 (add-hook 'pdf-view-mode-hook (lambda() (linum-mode -1)))
 
+(fset 'recipeEnvironment
+   "\\begin{recipe\C-f\C-m\C-m[preparationtime={\\unit[\C-f{\C-f\C-f,\C-o\C-mbakingtime={\\unit[\C-f{\C-f\C-f,\C-mbakingtemperature={\\unit[\C-f{\C-f\C-f,\C-mportion{\C-f\C-n\C-m\C-m{Name\C-f\C-m\C-m\\introduction{\C-f\C-o\C-o\C-n\C-i\\ingredients{\C-f\C-m\\preparation{\C-o\C-m\\step{\C-f\C-n\C-m\C-a\\end{recipe")
+
+(fset 'insertIngredient
+   "\\unit[\C-f{\C-f &  \\\\\C-b\C-b\C-b\C-b\C-b\C-b\C-b\C-b\C-b")
+
 
 (provide 'config-latex)
 
