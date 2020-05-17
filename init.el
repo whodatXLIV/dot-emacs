@@ -111,8 +111,10 @@
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)
     (setenv "GOPATH" "/Users/sethfigueroa/Projects")
-    (setq mac-option-modifier 'none
-          mac-command-modifier 'meta)
+    (setq mac-option-key-is-meta nil
+          mac-command-key-is-meta t
+          mac-command-modifier 'meta
+          mac-option-modifier 'super)
 )
 
 
