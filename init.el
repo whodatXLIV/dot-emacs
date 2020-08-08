@@ -41,6 +41,10 @@
 (add-hook 'minibuffer-setup-hook 'my-minibuffer-setup-hook)
 (add-hook 'minibuffer-exit-hook 'my-minibuffer-exit-hook)
 
+
+;;; Global keybindings
+(global-set-key (kbd "C-x M-s") 'speedbar)
+(global-set-key (kbd "C-x M-r") 'revert-buffer)
 ;;==================================================
 
 (eval-when-compile (require 'cl))
