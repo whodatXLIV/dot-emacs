@@ -137,7 +137,7 @@ Emacs buffer are those starting with “*”."
 
 (global-set-key (kbd "M-S-<up>") 'tabbar-press-home)
 (global-set-key (kbd "M-S-<left>") 'tabbar-backward-tab)
-(global-set-key (kbd "M-S <right>") 'tabbar-forward-tab)
+(global-set-key (kbd "M-S-<right>") 'tabbar-forward-tab)
 ;; (global-set-key (kbd "C-x <down>") 'tabbar-press-scroll-right)
 (global-set-key (kbd "C-S-<left>") 'tabbar-move-group-backward)
 (global-set-key (kbd "C-S-<right>") 'tabbar-move-group-forward)
