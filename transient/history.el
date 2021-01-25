@@ -29,6 +29,5 @@
  (magit-push nil)
  (magit-rebase nil)
  (magit-reset nil)
- (magit-revert nil
-               ("--edit"))
+ (magit-revert nil)
  (magit:-- "fsim.py" "" "ssDefs.py" "factor/*" "deploy/*" "deploy/GMPN.py"))
