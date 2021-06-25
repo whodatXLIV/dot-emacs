@@ -55,6 +55,9 @@ Emacs buffer are those starting with “*”."
     ((eq major-mode 'shell-script-mode)
      "Script"
      )
+    ((eq major-mode 'sh-mode)
+     "Script"
+     )
     ((string-equal "*PHP*" (substring (buffer-name) 0 5))
      "PHP"
      )
