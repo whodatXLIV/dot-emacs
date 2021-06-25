@@ -1,6 +1,8 @@
 ((magit-branch nil)
  (magit-commit nil)
  (magit-diff
+  (("--" "MLDefs.py")
+   "--no-ext-diff" "--stat")
   (("--" "ssDefs.py")
    "--no-ext-diff" "--stat")
   (("--" "deploy/GMPN.py")
@@ -30,4 +32,4 @@
  (magit-rebase nil)
  (magit-reset nil)
  (magit-revert nil)
- (magit:-- "fsim.py" "" "ssDefs.py" "factor/*" "deploy/*" "deploy/GMPN.py"))
+ (magit:-- "MLDefs.py" "" "fsim.py" "ssDefs.py" "factor/*" "deploy/*" "deploy/GMPN.py"))

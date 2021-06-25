@@ -144,11 +144,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(org-agenda-files
-   '("~/Documents/todo.org" "~/Documents/Extend_Target/Extend_Target.org"))
+   (quote
+    ("~/Documents/todo.org" "~/Documents/Extend_Target/Extend_Target.org")))
  '(package-selected-packages
-   '(speed-type ivy-hydra python-mode yapfify sane-term anaconda-mode tramp xref-js2 tern-auto-complete tern pyenv-mode json-navigator csv-mode image+ org-bullets pdf-view go-eldoc go-autocomplete latex-mode LaTeX-mode go-dlv go-playground minimap ace-window py-yapf flake8 company-jedi pylint company-anaconda undo-tree go-flymake org-mode py-autopep8 latex-preview-pane jedi golden-ratio flymd flycheck-pos-tip emmet-mode elpy diminish company-go auctex))
+   (quote
+    (yaml-mode speed-type ivy-hydra python-mode yapfify sane-term anaconda-mode tramp xref-js2 tern-auto-complete tern pyenv-mode json-navigator csv-mode image+ org-bullets pdf-view go-eldoc go-autocomplete latex-mode LaTeX-mode go-dlv go-playground minimap ace-window py-yapf flake8 company-jedi pylint company-anaconda undo-tree go-flymake org-mode py-autopep8 latex-preview-pane jedi golden-ratio flymd flycheck-pos-tip emmet-mode elpy diminish company-go auctex)))
  '(zoom-mode t nil (zoom))
- '(zoom-size '(0.618 . 0.618)))
+ '(zoom-size (quote (0.618 . 0.618))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
