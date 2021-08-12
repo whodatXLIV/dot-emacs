@@ -4,8 +4,8 @@
 
 ;;; Code:
 
-;; (require-package 'sane-term)
-;; (global-set-key (kbd "C-x t") 'sane-term-create)
+(require-package 'eshell)
+(global-set-key (kbd "C-x e") 'eshell)
 
 ;; (defvar f-key-defs
 ;;   (let ((fkeys nil))
@@ -27,6 +27,6 @@
 
 
 
-(provide 'config-sane-term)
+(provide 'config-eshell)
 
-;;; config-sane-term.el ends here
+;;; config-eshell.el ends here

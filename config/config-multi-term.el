@@ -4,8 +4,8 @@
 
 ;;; Code:
 
-;; (require-package 'sane-term)
-;; (global-set-key (kbd "C-x t") 'sane-term-create)
+(require-package 'multi-term)
+(global-set-key (kbd "C-x t") 'multi-term)
 
 ;; (defvar f-key-defs
 ;;   (let ((fkeys nil))
@@ -27,6 +27,6 @@
 
 
 
-(provide 'config-sane-term)
+(provide 'config-multi-term)
 
-;;; config-sane-term.el ends here
+;;; config-multi-term.el ends here
