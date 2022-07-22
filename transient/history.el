@@ -7,13 +7,13 @@
   (("--" "ssDefs.py")
    "--no-ext-diff" "--stat")
   (("--" "deploy/GMPN.py")
-   "--no-ext-diff" "--stat")
-  ("--no-ext-diff"))
+   "--no-ext-diff" "--stat"))
  (magit-dispatch nil)
  (magit-fetch nil)
  (magit-gitignore nil)
  (magit-log
   ("-n256" "--graph" "--decorate")
+  ("-n256" "--decorate")
   ("-n256"
    ("--" "fsim.py")
    "--graph" "--decorate")
@@ -27,9 +27,19 @@
    ("--" "deploy/*")
    "--graph" "--decorate"))
  (magit-merge nil)
- (magit-pull nil)
- (magit-push nil)
+ (magit-patch nil)
+ (magit-pull nil
+             ("--rebase"))
+ (magit-push nil
+             ("--force"))
  (magit-rebase nil)
+ (magit-remote
+  ("-f"))
  (magit-reset nil)
- (magit-revert nil)
+ (magit-revert
+  ("--edit")
+  nil)
+ (magit-stash nil)
+ (magit-submodule nil
+                  ("--force" "--recursive"))
  (magit:-- "MLDefs.py" "" "fsim.py" "ssDefs.py" "factor/*" "deploy/*" "deploy/GMPN.py"))
