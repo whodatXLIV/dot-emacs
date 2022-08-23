@@ -18,6 +18,9 @@
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 
+(setq backup-directory-alist `(("." . "~/.emacs.d/.saves")))
+
+
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
