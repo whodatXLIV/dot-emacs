@@ -4,8 +4,9 @@
 
 ;;; Code:
 
-;; (require-package 'multi-term)
-;; (global-set-key (kbd "C-x t") 'multi-term)
+(require-package 'vterm)
+(global-set-key (kbd "C-x t") 'vterm-toggle-cd)
+
 
 ;; (defvar f-key-defs
 ;;   (let ((fkeys nil))
@@ -27,6 +28,6 @@
 
 
 
-(provide 'config-multi-term)
+(provide 'config-vterm)
 
-;;; config-multi-term.el ends here
+;;; config-vterm.el ends here

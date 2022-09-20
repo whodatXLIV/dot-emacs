@@ -25,7 +25,7 @@ Emacs buffer are those starting with “*”."
     ((eq major-mode 'eshell-mode)
      "Eshell"
      )
-    ((eq major-mode 'term-mode)
+    ((eq major-mode 'vterm-mode)
      "Term"
      )
     ((eq major-mode 'go-mode)
