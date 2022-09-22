@@ -4,6 +4,8 @@
 
   
   (smartparens-global-mode t)
+
+  (require-package 'bind-key)
   
    (bind-keys
    :map smartparens-mode-map

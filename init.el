@@ -20,8 +20,15 @@
 
 (setq backup-directory-alist `(("." . "~/.emacs.d/.saves")))
 
-(require 'tramp)
-(add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+
+;; (setq vterm-tramp-shells '(("/bin/zsh")))
+;; (setq tramp-default-remote-shell "/bin/zsh")
+(with-eval-after-load "tramp" (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+(setq shell-file-name "/bin/zsh")
+(setq vterm-shell "/bin/zsh")
+;; /ceph/var/users/sfigueroa/gopath/bin/gopls
+
+;; M-x tramp-cleanup-this-connection
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
@@ -50,8 +57,9 @@
 ;;; Global keybindings
 (global-set-key (kbd "C-x M-s") 'speedbar)
 (global-set-key (kbd "C-x M-r") 'revert-buffer)
-;;==================================================
+;; ;;==================================================
 
+;; # Must manually install cl
 (eval-when-compile (require 'cl))
 
 (lexical-let ((emacs-start-time (current-time)))
@@ -117,19 +125,20 @@
     (add-to-list 'load-path themes-directory)
     (load themes-file))
 
+  
+  (require-package 'exec-path-from-shell)
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)
-    (setenv "GOPATH" "/Users/sethfigueroa/Projects")
     (setq mac-option-key-is-meta nil
           mac-command-key-is-meta t
           mac-command-modifier 'meta
           mac-option-modifier 'super)
-)
+    )
 
 
-  (use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode))
+  ;; (use-package flycheck
+  ;; :ensure t
+  ;; :init (global-flycheck-mode))
 
   (cl-loop for file in (reverse (directory-files-recursively config-directory "\\.el$"))
            do (condition-case ex
@@ -138,22 +147,10 @@
                           (insert (format "[INIT ERROR]\n%s\n%s\n\n" file ex))))))
 
   (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
-  )
+)
 
 ;; (pdf-tools-install)
-(pdf-loader-install) ;; Provides better start up time
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-agenda-files
-   '("~/Documents/todo.org" "~/Documents/Extend_Target/Extend_Target.org"))
- '(package-selected-packages
-   '(yasnippet tramp company company-mode lsp-ui lsp-mode go-mode conda lua-mode markdown-preview-mode markdown-mode multi-term yaml-mode speed-type ivy-hydra python-mode yapfify sane-term anaconda-mode xref-js2 tern-auto-complete tern pyenv-mode csv-mode image+ pdf-view latex-mode LaTeX-mode go-dlv minimap ace-window py-yapf flake8 company-jedi pylint company-anaconda undo-tree go-flymake org-mode py-autopep8 latex-preview-pane golden-ratio flymd flycheck-pos-tip emmet-mode elpy diminish company-go auctex))
- '(zoom-mode t nil (zoom))
- '(zoom-size '(0.618 . 0.618)))
+;; (pdf-loader-install) ;; Provides better start up time
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -179,3 +176,13 @@
  '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
  '(org-todo ((t (:foreground "OrangeRed" :background "gray10" :box (:color "firebrick" :line-width 2 :style none) :height 1))))
  '(org-verbatim ((t (:inherit (shadow fixed-pitch))))))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(skewer-mode ein ace-mc ac-etags page-break-lines dashboard drag-stuff counsel swiper magit projectile smartparens tabbar zoom yapfify yaml-mode xref-js2 vterm-toggle undo-tree tramp-term tramp tern-auto-complete speed-type sane-term python-mode pyenv-mode py-yapf multi-term minimap markdown-preview-mode lua-mode lsp-ui js2-refactor ivy-hydra image+ go-mode exec-path-from-shell csv-mode conda company clipboard-collector base16-theme auctex anaconda-mode ace-window))
+ '(zoom-mode t nil (zoom))
+ '(zoom-size '(0.618 . 0.618)))

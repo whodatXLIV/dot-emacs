@@ -31,8 +31,8 @@
 
   
   ;; Company mode
-  (setq company-idle-delay 3)
-  (setq company-minimum-prefix-length 3)
+  (setq company-idle-delay 1)
+  (setq company-minimum-prefix-length 1)
   (add-hook 'go-mode-hook 'company-mode)
   
   ;; (setq flycheck-global-modes '(not go-mode))
@@ -48,11 +48,11 @@
   (add-hook 'go-mode-hook #'lsp-deferred)
   (setq lsp-headerline-breadcrumb-enable nil)
 
+  (require 'lsp-mode)
   (lsp-register-client
    (make-lsp-client :new-connection (lsp-tramp-connection "gopls")
                     :major-modes '(go-mode)
                     :priority -1
-                    :server-id 'gopls
                     :remote? t
                     )
    )
