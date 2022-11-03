@@ -5,7 +5,12 @@
 ;;; Code:
 
 (require-package 'vterm)
-(global-set-key (kbd "C-x t") 'vterm-toggle-cd)
+(require-package 'multi-vterm)
+(use-package multi-vterm :ensure t)
+
+(global-set-key (kbd "C-x t") 'multi-vterm-project)
+
+(global-set-key (kbd "C-x M-t") 'multi-vterm)
 
 
 ;; (defvar f-key-defs

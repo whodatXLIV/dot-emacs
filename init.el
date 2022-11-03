@@ -24,6 +24,10 @@
 ;; (setq vterm-tramp-shells '(("/bin/zsh")))
 ;; (setq tramp-default-remote-shell "/bin/zsh")
 (with-eval-after-load "tramp" (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+;; '(tramp-connection-properties
+;;    '(("/sshfs:" "direct-async-process" t)
+;;      ((regexp-quote "/ssh:") "remote-shell" "/bin/zsh")))
+
 (setq shell-file-name "/bin/zsh")
 (setq vterm-shell "/bin/zsh")
 ;; /ceph/var/users/sfigueroa/gopath/bin/gopls
@@ -135,6 +139,8 @@
           mac-option-modifier 'super)
     )
 
+  (require-package 'use-package)
+
 
   ;; (use-package flycheck
   ;; :ensure t
@@ -183,6 +189,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(skewer-mode ein ace-mc ac-etags page-break-lines dashboard drag-stuff counsel swiper magit projectile smartparens tabbar zoom yapfify yaml-mode xref-js2 vterm-toggle undo-tree tramp-term tramp tern-auto-complete speed-type sane-term python-mode pyenv-mode py-yapf multi-term minimap markdown-preview-mode lua-mode lsp-ui js2-refactor ivy-hydra image+ go-mode exec-path-from-shell csv-mode conda company clipboard-collector base16-theme auctex anaconda-mode ace-window))
+   '(eglot json-rpc-server json-rpc pyvenv flycheck skewer-mode ein ace-mc ac-etags page-break-lines dashboard drag-stuff counsel swiper magit projectile smartparens tabbar zoom yapfify yaml-mode xref-js2 undo-tree tramp-term tramp tern-auto-complete speed-type sane-term python-mode pyenv-mode py-yapf multi-term minimap markdown-preview-mode lua-mode lsp-ui js2-refactor ivy-hydra image+ go-mode exec-path-from-shell csv-mode conda company clipboard-collector base16-theme auctex anaconda-mode ace-window))
  '(zoom-mode t nil (zoom))
  '(zoom-size '(0.618 . 0.618)))

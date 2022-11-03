@@ -27,7 +27,7 @@
 (require-package 'lsp-ui)
 ;; (require-package 'lsp-pyright)
 
-Start LSP Mode
+;; Start LSP Mode
 (add-hook 'python-mode-hook #'lsp-deferred)
 (setq lsp-headerline-breadcrumb-enable nil)
 
