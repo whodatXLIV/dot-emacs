@@ -6,6 +6,8 @@
 
 (require-package 'vterm)
 (require-package 'multi-vterm)
+(use-package vterm
+    :ensure t)
 (use-package multi-vterm :ensure t)
 
 (global-set-key (kbd "C-x t") 'multi-vterm-project)

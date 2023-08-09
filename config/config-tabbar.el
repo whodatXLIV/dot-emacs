@@ -38,7 +38,7 @@ Emacs buffer are those starting with “*”."
      "Python"
      )
     ((string-equal "*ein:" (substring (buffer-name) 0 5))
-     "Python"
+     "EIN"
      )
     ((string-equal "*Pyth" (substring (buffer-name) 0 5))
      "Python"
@@ -67,11 +67,19 @@ Emacs buffer are those starting with “*”."
     ((string-equal "magit:" (substring (buffer-name) 0 6))
      "Magit"
      )
+    ((eq major-mode 'lispy-mode)
+     "Lisp"
+     )
+    ((eq major-mode 'lisp-mode)
+     "Lisp"
+     )
+    ((eq major-mode 'emacs-lisp-mode)
+     "Lisp"
+     )
     (t
      "Misc"
      )
     )))
-
 
 (defun tabbar-move-current-tab-one-place-left ()
   "Move current tab one place left, unless it's already the leftmost."
@@ -81,7 +89,7 @@ Emacs buffer are those starting with “*”."
          (first-buf (car old-bufs))
          (new-bufs (list)))
     (if (string= (buffer-name) (format "%s" (car first-buf)))
-        old-bufs ; the current tab is the leftmost
+        old-bufs                     ; the current tab is the leftmost
       (setq not-yet-this-buf first-buf)
       (setq old-bufs (cdr old-bufs))
       (while (and
@@ -147,7 +155,7 @@ Emacs buffer are those starting with “*”."
 (global-set-key (kbd "M-S-<up>") 'tabbar-press-home)
 (global-set-key (kbd "M-S-<left>") 'tabbar-backward-tab)
 (global-set-key (kbd "M-S-<right>") 'tabbar-forward-tab)
-;; (global-set-key (kbd "C-x <down>") 'tabbar-press-scroll-right)
+(global-set-key (kbd "M-S-<down>") 'tabbar-local-mode)
 (global-set-key (kbd "C-S-<left>") 'tabbar-move-group-backward)
 (global-set-key (kbd "C-S-<right>") 'tabbar-move-group-forward)
 ;; Key sequences "C-S-PgUp" and "C-S-PgDn" move the current tab to the left and to the right.

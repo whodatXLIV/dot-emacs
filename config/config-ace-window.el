@@ -22,5 +22,6 @@
 	(?? aw-show-dispatch-help))
   "List of actions for `aw-dispatch-default'.")
 
+
 (provide 'config-ace-window)
 ;;; config-ace-window.el ends here

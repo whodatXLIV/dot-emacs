@@ -1,4 +1,4 @@
-;;; Commentary:
+ ;;; Commentary:
 ;;init.el -- Emacs configuration entry point.
 ;;
 ;; Author: Seth Figueroa <sethamin.7@gmail.com>
@@ -10,20 +10,22 @@
 ;;  GENERAL START UP
 ;;==================================================
 ;;; Code:
+(load "/opt/homebrew/opt/scimax/share/emacs/site-lisp/scimax/init.el")
 (setq inhibit-startup-message t)        ; Disable startup message
-(global-linum-mode t) ;; enable line numbers globally
+(global-display-line-numbers-mode t)
+
 (show-paren-mode 1)
 
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-
-(setq backup-directory-alist `(("." . "~/.emacs.d/.saves")))
+(global-set-key (kbd "C-c M-l") 'scroll-lock-mode)
 
 
 ;; (setq vterm-tramp-shells '(("/bin/zsh")))
-;; (setq tramp-default-remote-shell "/bin/zsh")
+;; (setq tramp-default-remote-shell "/bin/zsh") 
 (with-eval-after-load "tramp" (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+
 ;; '(tramp-connection-properties
 ;;    '(("/sshfs:" "direct-async-process" t)
 ;;      ((regexp-quote "/ssh:") "remote-shell" "/bin/zsh")))
@@ -57,10 +59,43 @@
 (add-hook 'minibuffer-setup-hook 'my-minibuffer-setup-hook)
 (add-hook 'minibuffer-exit-hook 'my-minibuffer-exit-hook)
 
+(defun connect-focusvq-home ()
+  (interactive)
+  (dired "/scp:sfigueroa@dev.focusvq.com:"))
+
+(defun connect-focusvq-ceph ()
+  (interactive)
+  (dired "/scp:sfigueroa@dev.focusvq.com:/ceph/var/users/sfigueroa"))
+
+(defun connect-focusvq-elcano ()
+  (interactive)
+  (dired "/scp:sfigueroa@dev.focusvq.com:/ceph/var/elcano"))
 
 ;;; Global keybindings
-(global-set-key (kbd "C-x M-s") 'speedbar)
+;; (global-set-key (kbd "C-x M-s") 'speedbar)
 (global-set-key (kbd "C-x M-r") 'revert-buffer)
+(global-set-key (kbd "C-x M-h") 'connect-focusvq-home)
+(global-set-key (kbd "C-x M-c") 'connect-focusvq-ceph)
+(global-set-key (kbd "C-x M-e") 'connect-focusvq-elcano)
+
+(setq sql-connection-alist
+      '(
+        (mysql-fds (sql-product 'mysql)
+                    (sql-port 0)
+                    (sql-server "db.internal.focusvq.com")
+                    (sql-user "fds")
+                    (sql-password "WnJSuqmND9i0ePYw")
+                    (sql-database "fds"))
+
+        (mysql-elcano (sql-product 'mysql)
+                    (sql-port 0)
+                    (sql-server "db.internal.focusvq.com")
+                    (sql-user "fds")
+                    (sql-password "WnJSuqmND9i0ePYw")
+                    (sql-database "elcano"))
+        )
+      )
+
 ;; ;;==================================================
 
 ;; # Must manually install cl
@@ -120,7 +155,7 @@
                            ("org" . "http://orgmode.org/elpa/")
                            ("gnu" . "http://elpa.gnu.org/packages/")))
   (setq package-enable-at-startup nil)
-  (package-initialize)
+  ;; (package-initialize)
 
   (load (concat core-directory "core-boot"))
 
@@ -129,14 +164,16 @@
     (add-to-list 'load-path themes-directory)
     (load themes-file))
 
-  
+
   (require-package 'exec-path-from-shell)
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)
     (setq mac-option-key-is-meta nil
           mac-command-key-is-meta t
           mac-command-modifier 'meta
-          mac-option-modifier 'super)
+          mac-option-modifier 'super
+          ns-function-modifier 'hyper
+          )
     )
 
   (require-package 'use-package)
@@ -153,10 +190,17 @@
                           (insert (format "[INIT ERROR]\n%s\n%s\n\n" file ex))))))
 
   (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
-)
+  )
+
+;; (custom-set-variables
+;;  '(conda-anaconda-home "/ssh:sfigueroa@dev.focusvq.com:/ceph/var2/users/sfigueroa/miniconda"))
 
 ;; (pdf-tools-install)
 ;; (pdf-loader-install) ;; Provides better start up time
+
+;; highlight line with the cursor, preserving the colours.
+(global-hl-line-mode 1)
+(set-face-attribute 'hl-line nil :inherit nil :background "gray6")
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -189,6 +233,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(eglot json-rpc-server json-rpc pyvenv flycheck skewer-mode ein ace-mc ac-etags page-break-lines dashboard drag-stuff counsel swiper magit projectile smartparens tabbar zoom yapfify yaml-mode xref-js2 undo-tree tramp-term tramp tern-auto-complete speed-type sane-term python-mode pyenv-mode py-yapf multi-term minimap markdown-preview-mode lua-mode lsp-ui js2-refactor ivy-hydra image+ go-mode exec-path-from-shell csv-mode conda company clipboard-collector base16-theme auctex anaconda-mode ace-window))
+   '(jupyter ein edbi ejc-sql pulsar flycheck-eglot eglot pylint lsp-jedi posframe json-rpc-server json-rpc pyvenv flycheck skewer-mode ace-mc ac-etags page-break-lines dashboard drag-stuff counsel swiper magit projectile smartparens tabbar zoom yapfify yaml-mode xref-js2 undo-tree tramp-term tramp tern-auto-complete speed-type sane-term python-mode pyenv-mode py-yapf multi-term minimap markdown-preview-mode lua-mode lsp-ui js2-refactor ivy-hydra image+ go-mode exec-path-from-shell csv-mode conda company clipboard-collector base16-theme auctex anaconda-mode ace-window))
  '(zoom-mode t nil (zoom))
  '(zoom-size '(0.618 . 0.618)))
