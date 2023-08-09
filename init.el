@@ -19,7 +19,7 @@
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-(global-set-key (kbd "C-c M-l") 'scroll-lock-mode)
+(global-set-key (kbd "H-l") 'scroll-lock-mode)
 
 
 ;; (setq vterm-tramp-shells '(("/bin/zsh")))
@@ -73,10 +73,10 @@
 
 ;;; Global keybindings
 ;; (global-set-key (kbd "C-x M-s") 'speedbar)
-(global-set-key (kbd "C-x M-r") 'revert-buffer)
-(global-set-key (kbd "C-x M-h") 'connect-focusvq-home)
-(global-set-key (kbd "C-x M-c") 'connect-focusvq-ceph)
-(global-set-key (kbd "C-x M-e") 'connect-focusvq-elcano)
+(global-set-key (kbd "H-r") 'revert-buffer)
+(global-set-key (kbd "H-c h") 'connect-focusvq-home)
+(global-set-key (kbd "H-c c") 'connect-focusvq-ceph)
+(global-set-key (kbd "H-c e") 'connect-focusvq-elcano)
 
 (setq sql-connection-alist
       '(
@@ -178,6 +178,7 @@
           mac-command-modifier 'meta
           mac-option-modifier 'super
           ns-function-modifier 'hyper
+          ns-right-option-modifier 'hyper
           )
     )
 

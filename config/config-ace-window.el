@@ -5,7 +5,7 @@
 ;;; Code:
 (require-package 'ace-window)
 
-(global-set-key (kbd "C-c C-SPC") 'ace-window)
+(global-set-key (kbd "H-SPC") 'ace-window)
 (setq aw-dispatch-always t)
 
 (defvar aw-dispatch-alist

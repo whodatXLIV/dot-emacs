@@ -20,8 +20,7 @@
     ("l" dumb-jump-quick-look "Quick look")
     ("b" dumb-jump-back "Back"))
 
-(global-set-key (kbd "H-M-.") 'dumb-jump-hydra/body)
-
+(global-set-key (kbd "H-h .") 'dumb-jump-hydra/body)
 (provide 'config-dumb-jump)
 
 ;;; config-dumb-jump.el ends here

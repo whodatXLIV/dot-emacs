@@ -12,9 +12,9 @@
 ;; pandoc notebook.md -o notebook.org
 
 
-
-;; (jupyter-org-define-key (kbd "C-c h") 'scimax-jupyter-org-hydra/body)
-(define-key jupyter-org-interaction-mode-map (kbd "M-i") #'scimax-jupyter-org-hydra/body)
+(jupyter-org-define-key (kbd "H-h h") 'scimax-jupyter-org-hydra/body)
+(define-key jupyter-org-interaction-mode-map (kbd "H-<left>") #'python-indent-shift-left)
+(define-key jupyter-org-interaction-mode-map (kbd "H-<right>") #'python-indent-shift-right)
 
 (setq  org-src-block-faces '(("emacs-lisp" (:background "gray10" :extend t))
 			                 ("sh" (:background "gray10" :extend t))

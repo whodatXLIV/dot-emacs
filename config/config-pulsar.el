@@ -21,8 +21,8 @@
 (pulsar-global-mode 1)
 
 (let ((map global-map))
-  (define-key map (kbd "C-c p p") #'pulsar-pulse-line)
-  (define-key map (kbd "C-c p h") #'pulsar-highlight-dwim))
+  (define-key map (kbd "H-p p") #'pulsar-pulse-line)
+  (define-key map (kbd "H-p h") #'pulsar-highlight-dwim))
 
 ;; (add-hook ' #'pulsar-recenter-top)
 ;; (add-hook 'imenu-after-jump-hook #'pulsar-reveal-entry)

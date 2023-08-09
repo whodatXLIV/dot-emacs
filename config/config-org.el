@@ -22,7 +22,6 @@
                (local-set-key (kbd "C-M-<right>") 'org-shiftmetaright)
                (local-set-key (kbd "C-M-S-<left>") 'org-shiftcontrolleft)
                (local-set-key (kbd "C-M-S-<right>") 'org-shiftcontrolright)
-
                ))
   (setq org-todo-keywords
 	    '((sequence "TODO(t!)" "IN-PROGRESS(p!/@)" "WAITING(w!/@)" "|" "DONE(d)")))
