@@ -96,6 +96,11 @@
         )
       )
 
+;; (setq auto-mode-alist
+;;   (append
+;;    ;; .el files use lisp instead of elisp
+;;    '(("\\.el\\'" . lisp-mode))
+;;    auto-mode-alist))
 ;; ;;==================================================
 
 ;; # Must manually install cl

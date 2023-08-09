@@ -1,12 +1,9 @@
-;;; which-keys.el --- customize which-keys
+;;; config-which-keys.el --- customize config-which-keys
 
 ;;; Commentary:
 ;; which keys is a package that helps remember key commands
 
 (require-package 'which-key)
-(which-key-mode)
-
-
 ;; open on right side then on bottom
 (which-key-setup-side-window-right-bottom)
 
@@ -17,6 +14,7 @@
 (setq which-key-idle-delay 10000)
 (setq which-key-idle-secondary-delay 0.05)
 
-(provide 'which-keys)
+(which-key-mode)
+(provide 'config-which-keys)
 
-;;; which-keys.el ends here
+;;; config-which-keys.el ends here
