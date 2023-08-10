@@ -173,11 +173,8 @@
   (require-package 'exec-path-from-shell)
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)
-    (setq mac-option-key-is-meta nil
-          mac-command-key-is-meta t
-          mac-command-modifier 'meta
-          mac-option-modifier 'super
-          ns-function-modifier 'hyper
+    (setq ns-command-modifier 'meta
+          ns-option-modifier 'super
           ns-right-option-modifier 'hyper
           )
     )

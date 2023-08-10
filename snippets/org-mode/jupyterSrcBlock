@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
 # name: jupyterSrcBlock
-# key: <jp
+# key: <jsb
 # --
 #+BEGIN_SRC jupyter-python
-${0}
+$0
 #+END_SRC

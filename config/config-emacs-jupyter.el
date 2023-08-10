@@ -15,6 +15,10 @@
 (jupyter-org-define-key (kbd "H-h h") 'scimax-jupyter-org-hydra/body)
 (define-key jupyter-org-interaction-mode-map (kbd "H-<left>") #'python-indent-shift-left)
 (define-key jupyter-org-interaction-mode-map (kbd "H-<right>") #'python-indent-shift-right)
+(add-hook 'jupyter-repl-mode-hook ;; org mode
+            '(lambda ()
+               (local-set-key (kbd "H-h h") 'scimax-jupyter-org-hydra/body)
+               ))
 
 (setq  org-src-block-faces '(("emacs-lisp" (:background "gray10" :extend t))
 			                 ("sh" (:background "gray10" :extend t))
