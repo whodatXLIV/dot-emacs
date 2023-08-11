@@ -169,6 +169,36 @@
       ))
   )
 
+(add-hook 'org-mode-hook (lambda ()
+			               (setq-local seth-jupyter-execution-count 1)))
+
+(defun org-babel-add-time-stamp-after-execute-before-src-block ()
+  (end-of-line)
+  (save-excursion
+    (search-backward "#+BEGIN_SRC" 0 t)
+    (forward-line -1)
+    (beginning-of-line)
+ 
+    (when (not (or
+                (looking-at "[[:space:]]*$")
+                (looking-at "#\\+LASTRUN:")))
+      (forward-line 1)
+      (newline)
+      (forward-line -1))
+    (when (looking-at "#\\+LASTRUN:")
+      (kill-line))
+    (insert (concat
+             "#+LASTRUN: "
+             (format-time-string "[%Y-%m-%d %a %H:%M:%S]" (current-time))
+             " ["
+             (int-to-string seth-jupyter-execution-count)
+             "]"
+             ))
+    (setq-local seth-jupyter-execution-count (1+ seth-jupyter-execution-count))    
+    ))
+
+(add-hook 'org-babel-after-execute-hook
+          'org-babel-add-time-stamp-after-execute-before-src-block)
 ;; (plist-put org-format-latex-options :scale 1.5)
 
 
