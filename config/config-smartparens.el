@@ -30,7 +30,7 @@
                                         ; C-M space highlights words forward then use par to wrap them
    ("C-x C-t" . sp-transpose-hybrid-sexp)))
 
-(setq sp-hybrid-kill-excessive-whitespace 1)
+;; (setq sp-hybrid-kill-excessive-whitespace 1)
 
 (set-face-attribute 'highlight nil :background "forest green" :foreground "white")
 

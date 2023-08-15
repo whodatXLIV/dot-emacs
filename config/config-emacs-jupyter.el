@@ -12,9 +12,11 @@
 ;; pandoc notebook.md -o notebook.org
 
 
-(jupyter-org-define-key (kbd "H-h h") 'scimax-jupyter-org-hydra/body)
+(global-set-key (kbd "H-h j") 'scimax-jupyter-org-hydra/body)
 (define-key jupyter-org-interaction-mode-map (kbd "H-<left>") #'python-indent-shift-left)
 (define-key jupyter-org-interaction-mode-map (kbd "H-<right>") #'python-indent-shift-right)
+(define-key jupyter-org-interaction-mode-map (kbd "C-<return>") #'jupyter-org-execute-and-next-block)
+
 (add-hook 'jupyter-repl-mode-hook ;; org mode
             '(lambda ()
                (local-set-key (kbd "H-h h") 'scimax-jupyter-org-hydra/body)
@@ -94,10 +96,10 @@
 (pretty-hydra-define scimax-jupyter-org-hydra (:color blue :hint nil)
   ("Execute"
    (
-    ;; ("<return>" org-ctrl-c-ctrl-c "current" :color red)
-    ("C-<return>" org-ctrl-c-ctrl-c "current" :color red)
-    ("S-<return>" jupyter-org-execute-and-next-block "current and next" :color red)
-    ("M-<return>" (progn (org-ctrl-c-ctrl-c) (scimax-ob-insert-src-block t)) "current and new" )
+    ("<return>" nil "quit" :color red)
+    ("C-c C-c" org-ctrl-c-ctrl-c "current" :color red)
+    ("C-<return>" jupyter-org-execute-and-next-block "current and next" :color red)
+    ("H-<return>" (progn (org-ctrl-c-ctrl-c) (scimax-ob-insert-src-block t)) "current and new" )
     ;; ("C-M-<return>" jupyter-org-execute-subtree "subtree")
     ("S-C-<return>" jupyter-org-restart-and-execute-to-point "restart to point")
     ("S-M-<return>" jupyter-org-restart-kernel-execute-buffer "restart buffer"))
