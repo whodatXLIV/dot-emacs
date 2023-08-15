@@ -4,170 +4,193 @@
 ;; (keymap-global-set "C-cc" 'org-capture)
 ;; (keymap-global-set "C-cb" 'org-switchb)
 
-(after 'org
-  (require-package 'org-bullets)
-  (add-hook 'org-mode-hook ;; org mode
-            '(lambda ()
 
-               (unbind-key (kbd "S-M-<up>") org-mode-map)
-               (unbind-key (kbd "S-M-<down>") org-mode-map)
-               (unbind-key (kbd "S-M-<left>") org-mode-map)
-               (unbind-key (kbd "S-M-<right>") org-mode-map)
-               (unbind-key (kbd "C-S-<left>") org-mode-map)
-               (unbind-key (kbd "C-S-<right>") org-mode-map)
-               
-               (local-set-key (kbd "C-M-<up>") 'org-shiftmetaup)
-               (local-set-key (kbd "C-M-<down>") 'org-shiftmetadown)
-               (local-set-key (kbd "C-M-<left>") 'org-shiftmetaleft)
-               (local-set-key (kbd "C-M-<right>") 'org-shiftmetaright)
-               (local-set-key (kbd "C-M-S-<left>") 'org-shiftcontrolleft)
-               (local-set-key (kbd "C-M-S-<right>") 'org-shiftcontrolright)
-               ))
-  (setq org-todo-keywords
-	    '((sequence "TODO(t!)" "IN-PROGRESS(p!/@)" "WAITING(w!/@)" "|" "DONE(d)")))
+(require-package 'org-bullets)
+(add-hook 'org-mode-hook ;; org mode
+          '(lambda ()
 
-  (setq org-tag-alist '((:startgroup . nil)
-			            ("@work" . ?w) ("@home" . ?h)
-			            (:endgroup . nil)
-			            ("BRITTON" . ?b)
-			            ("DAN" . ?d)
-			            ("REZA" . ?r)
-			            ("NATHAN" . ?n)
-			            ("MALCOLM" . ?m)
-			            ("TRIPP" . ?t)
-			            )
+             (unbind-key (kbd "S-M-<up>") org-mode-map)
+             (unbind-key (kbd "S-M-<down>") org-mode-map)
+             (unbind-key (kbd "S-M-<left>") org-mode-map)
+             (unbind-key (kbd "S-M-<right>") org-mode-map)
+             (unbind-key (kbd "C-S-<left>") org-mode-map)
+             (unbind-key (kbd "C-S-<right>") org-mode-map)
+             
+             (local-set-key (kbd "C-M-<up>") 'org-shiftmetaup)
+             (local-set-key (kbd "C-M-<down>") 'org-shiftmetadown)
+             (local-set-key (kbd "C-M-<left>") 'org-shiftmetaleft)
+             (local-set-key (kbd "C-M-<right>") 'org-shiftmetaright)
+             (local-set-key (kbd "C-M-S-<left>") 'org-shiftcontrolleft)
+             (local-set-key (kbd "C-M-S-<right>") 'org-shiftcontrolright)
+             ))
+(setq org-todo-keywords
+	  '((sequence "TODO(t!)" "IN-PROGRESS(p!/@)" "WAITING(w!/@)" "|" "DONE(d)")))
+
+(setq org-tag-alist '((:startgroup . nil)
+			          ("@work" . ?w) ("@home" . ?h)
+			          (:endgroup . nil)
+			          ("BRITTON" . ?b)
+			          ("DAN" . ?d)
+			          ("REZA" . ?r)
+			          ("NATHAN" . ?n)
+			          ("MALCOLM" . ?m)
+			          ("TRIPP" . ?t)
+			          )
+	  )
+
+(setq org-display-remote-inline-images 'cache)
+
+(setq org-capture-templates
+	  '(
+	    ("t" "Todo" entry (file+headline "~/Documents/todo.org" "Tasks")
+	     "* TODO %? %A\n\n %T\n\n")
+	    ;; ("n" "Note" entry (file+headline "~/Documents/Notes.org" "Work Notes")
+	    ;;  "* NOTES %i\n %?\n %a\n %T\n")
 	    )
+	  )
 
-  (setq org-display-remote-inline-images 'cache)
+(setq org-startup-folded t
+	  org-startup-indented t
+	  org-log-done t
+	  )
+(add-hook 'org-mode-hook (lambda ()
+			               (visual-line-mode)))
+(add-hook 'org-mode-hook (lambda ()
+			               (linum-mode 0)))
 
-  (setq org-capture-templates
-	    '(
-	      ("t" "Todo" entry (file+headline "~/Documents/todo.org" "Tasks")
-	       "* TODO %? %A\n\n %T\n\n")
-	      ;; ("n" "Note" entry (file+headline "~/Documents/Notes.org" "Work Notes")
-	      ;;  "* NOTES %i\n %?\n %a\n %T\n")
-	      )
-	    )
-
-  (setq org-startup-folded t
-	    org-startup-indented t
-	    org-log-done t
-	    )
-  (add-hook 'org-mode-hook (lambda ()
-			                 (visual-line-mode)))
-  (add-hook 'org-mode-hook (lambda ()
-			                 (linum-mode 0)))
-
-  (add-hook 'org-mode-hook 'auto-complete-mode)
+(add-hook 'org-mode-hook 'auto-complete-mode)
 
 ;;; BEAUTIFYING ORG
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+;; (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
-  (setq org-bullets-bullet-list '(" " "➢" "⊛" "⊛" "⊛" "⊛" "⊛" "⊛")
-	    org-ellipsis "↵"
-	    org-hide-emphasis-markers t
-	    org-pretty-entities 1
-	    org-pretty-entities-include-sub-superscripts nil
-	    org-src-fontify-natively t
-	    org-fontify-whole-heading-line t
-	    org-fontify-done-headline t
-	    org-fontify-quote-and-verse-blocks t
-	    )
+;; (setq org-bullets-bullet-list '(" " "⊛" "⊛" "⊛" "⊛" "⊛" "⊛" "⊛")
+;; 	  org-pretty-entities-include-sub-superscripts nil
+;; 	  org-src-fontify-natively t
+;; 	  org-fontify-whole-heading-line t
+;; 	  org-fontify-done-headline t
+;; 	  org-fontify-quote-and-verse-blocks t
+;; 	  )
+;; (set-face-attribute 'org-block-end-line nil
+;;                     :underline "#44667A"                      
+;;                     )
 
+;; 			            ;; '(org-headline-done ((t (:inherit default :strike-through t))))
 
+;;                         ;; `(org-document-title ((t (,@headline ,@variable-tuple :height 1.5 :underline nil))))
+;;   			            '(org-block                 ((t (:inherit default))))
+;;   			            '(org-document-info         ((t (:foreground "dark orange"))))
+;;   			            '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+;;   			            '(org-link                  ((t (:foreground "royal blue" :underline t))))
+;;   			            '(org-meta-line             ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+;;   			            '(org-property-value        ((t (:inherit fixed-pitch))) t)
+;;   			            '(org-special-keyword       ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+;;   			            '(org-tag                   ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
+;;   			            '(org-verbatim              ((t (:inherit (shadow fixed-pitch)))))
+;;   			            )
 
+;;;;;;;;;;;;;
 
+(require-package 'org-modern)
 
-  (custom-theme-set-faces 'user
-                          `(org-level-8 ((t
-					                      (:font "Verdana" :weight regular :foreground "gray50" )
-					                      )))
-                          `(org-level-7 ((t
-					                      (:font "Verdana" :weight regular :foreground "gray60" )
-					                      )))
-                          `(org-level-6 ((t
-					                      (:font "Verdana" :weight regular :foreground "DarkOliveGreen" )
-					                      )))
-                          `(org-level-5 ((t
-					                      (:font "Verdana" :weight regular :foreground "orange3" )
-					                      )))
-                          `(org-level-4 ((t
-					                      (:font "Verdana" :weight regular :foreground "SlateBlue3" :height 1.1)
-					                      )))
-                          `(org-level-3 ((t
-					                      (:font "Verdana" :weight regular :foreground "SkyBlue" :height 1.2)
-					                      )))
-                          `(org-level-2 ((t (:font "Courier New"
-						                           :weight regular
-						                           :underline t
-						                           :foreground "salmon"
-						                           :height 1.3
-						                           ))))
-                          `(org-level-1 ((t (:font "American Typewriter"
-						                           :weight regular
-						                           :background "gray15"
-						                           :foreground "#70c0b1"
-						                           :height 1.5
-						                           ))))
+(add-hook 'org-mode-hook #'org-modern-mode)
+(add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
 
-  			              '(org-todo ((t (:foreground "OrangeRed"
-						                              :background "gray10"
-						                              :box (:color "firebrick" :line-width 2 :style none)
-						                              :height 1
-						                              ))))
-			              '(org-done ((t (:foreground "lime green"
-						                              :background "gray10"
-						                              :box (:color "forest green" :line-width 2 :style none)
-						                              :height 1
-						                              ))))
-
-			              ;; '(org-headline-done ((t (:inherit default :strike-through t))))
-
-                          ;; `(org-document-title ((t (,@headline ,@variable-tuple :height 1.5 :underline nil))))
-  			              '(org-block                 ((t (:inherit default))))
-  			              '(org-document-info         ((t (:foreground "dark orange"))))
-  			              '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
-  			              '(org-link                  ((t (:foreground "royal blue" :underline t))))
-  			              '(org-meta-line             ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-  			              '(org-property-value        ((t (:inherit fixed-pitch))) t)
-  			              '(org-special-keyword       ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-  			              '(org-tag                   ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
-  			              '(org-verbatim              ((t (:inherit (shadow fixed-pitch)))))
-  			              )
+(add-hook 'org-mode-hook (lambda () 
+                           (custom-theme-set-faces 'user
+                                                   ;; '(cursor                 ((t (:foreground "#928374"))))
+                                                   ;; '(org-block              ((t (:foreground "#f0eeeb":background "#1c2021" :extend t))))
+                                                   '(org-block-begin-line   ((t (:inherit org-block :background "#1d2021" :foreground "#d9b466" :extend t))))
+                                                   '(org-block-end-line     ((t (:inherit org-block-begin-line :foreground "#6b7d70"))))
+                                                   '(org-document-info      ((t (:foreground "#d5c4a1" :weight bold))))
+                                                   '(org-document-info-keyword    ((t (:inherit shadow))))
+                                                   '(org-document-title     ((t (:foreground "#fbf1c7" :weight bold :height 1.4))))
+                                                   '(org-meta-line          ((t (:inherit shadow))))
+                                                   '(org-target             ((t (:height 0.7 :inherit shadow))))
+                                                   '(org-link               ((t (:foreground "#b8bb26" :background "#32302f" :overline nil))))  ;; 
+                                                   '(org-indent             ((t (:inherit org-hide))))
+                                                   '(org-indent             ((t (:inherit (org-hide fixed-pitch)))))
+                                                   '(org-footnote           ((t (:foreground "#8ec07c" :background "#32302f" :overline nil))))
+                                                   '(org-ref-cite-face      ((t (:foreground "#fabd2f" :background "#32302f" :overline nil))))  ;; 
+                                                   '(org-ref-ref-face       ((t (:foreground "#83a598" :background "#32302f" :overline nil))))
+                                                   '(org-ref-label-face     ((t (:inherit shadow :box t))))
+                                                   '(org-drawer             ((t (:inherit shadow))))
+                                                   '(org-property-value     ((t (:inherit org-document-info))) t)
+                                                   '(org-tag                ((t (:inherit shadow))))
+                                                   '(org-date               ((t (:foreground "#83a598" :underline t))))
+                                                   '(org-verbatim           ((t (:inherit org-block :background "#3c3836" :foreground "#d5c4a1"))))
+                                                   '(org-code               ((t (:inherit org-verbatim :background "#3c3836" :foreground "#fe8019"))))
+                                                   '(org-quote              ((t (:inherit org-block :slant italic))))
+                                                   '(org-level-1            ((t (:foreground "#3375a8" :background "#181818" :weight bold :height 1.3 :overline nil :underline t :extend t)))) ;; Blue
+                                                   '(org-level-2            ((t (:foreground "#8ec07c" :background "#181818" :weight bold :height 1.2 :overline nil :extend t)))) ;; Aqua
+                                                   '(org-level-3            ((t (:foreground "#b8bb26" :background "#181818" :weight bold :height 1.1 :overline nil :extend t)))) ;; Green
+                                                   '(org-level-4            ((t (:foreground "#fabd2f" :background "#181818" :weight bold :height 1.1 :overline nil :extend t)))) ;; Yellow
+                                                   '(org-level-5            ((t (:foreground "#fe8019" :background "#181818" :weight bold :height 1.1 :overline nil :extend t)))) ;; Orange
+                                                   '(org-level-6            ((t (:foreground "#fb4934" :background "#181818" :weight bold :height 1.1 :overline nil :extend t)))) ;; Red
+                                                   '(org-level-7            ((t (:foreground "#d3869b" :background "#181818" :weight bold :height 1.1 :overline nil :extend t)))) ;; Blue
+                                                   '(org-level-8            ((t (:background "#181818" :weight bold :height 1.1 :overline nil :extend t))))
+                                                   '(org-headline-done      ((t (:foreground "#928374" :background "#181818" :weight bold :overline nil :extend t)))) ;; Gray
+                                                   '(org-ellipsis           ((t (:inherit shadow :height 1.0 :weight bold :extend t)))) 
+                                                   '(org-table              ((t (:foreground "#d5c4a1" ))))
+                                                   )))
 
 
+(add-hook 'org-mode-hook (lambda () 
+
+                           (setq
+                            ;; Edit settings
+                            org-auto-align-tags nil
+                            org-tags-column 0
+                            org-catch-invisible-edits 'show-and-error
+                            org-special-ctrl-a/e t
+                            org-insert-heading-respect-content t
+                            
+                            ;; Org styling, hide markup etc.
+                            org-hide-emphasis-markers t
+                            org-pretty-entities t
+                            
+                            ;; Agenda styling
+                            org-agenda-tags-column 0
+                            org-agenda-block-separator ?─
+                            org-agenda-time-grid
+                            '((daily today require-timed)
+                              (800 1000 1200 1400 1600 1800 2000)
+                              " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
+                            org-agenda-current-time-string
+                            "⭠ now ─────────────────────────────────────────────────")))
 
 
-  (setq org-directory '("~/Documents")
-	    org-agenda-files '("~/Documents/todo.org")
-	    ;; org-archive-location '("~/Documents/archive/")
-	    org-default-notes-file '("~/Documents/notes.org"))
+;;;;;;;;;
 
 
-  (setq org-agenda-ndays 7
-	    org-deadline-warning-days 10
-	    org-agenda-show-all-dates t
-	    org-agenda-start-on-weekday nil
-	    org-reverse-note-order t
-	    org-fast-tag-selection-single-key (quote expert)
-	    org-log-into-drawer t
-	    org-image-actual-width nil
-	    org-export-with-drawers t
-	    )
+(setq org-directory '("~/Documents")
+	  org-agenda-files '("~/Documents/todo.org")
+	  ;; org-archive-location '("~/Documents/archive/")
+	  org-default-notes-file '("~/Documents/notes.org"))
 
-  ;; Backend for HTML Table export
 
-  (require 'ox-html)
-  (defun ox-mrkup-filter-bold
-      (text back-end info)
-    "Markup TEXT as <bold>TEXT</bold>. Ignore BACK-END and INFO."
-    (format "<bold>%s</bold>" text))
+(setq org-agenda-ndays 7
+	  org-deadline-warning-days 10
+	  org-agenda-show-all-dates t
+	  org-agenda-start-on-weekday nil
+	  org-reverse-note-order t
+	  org-fast-tag-selection-single-key (quote expert)
+	  org-log-into-drawer t
+	  org-image-actual-width nil
+	  org-export-with-drawers t
+	  )
 
-  (org-export-define-derived-backend 'htmlTable 'html
-    :filters-alist
-    '((:filter-body . ox-mrkup-filter-body)
-      ))
-  )
+;; Backend for HTML Table export
+
+(require 'ox-html)
+(defun ox-mrkup-filter-bold
+    (text back-end info)
+  "Markup TEXT as <bold>TEXT</bold>. Ignore BACK-END and INFO."
+  (format "<bold>%s</bold>" text))
+
+(org-export-define-derived-backend 'htmlTable 'html
+  :filters-alist
+  '((:filter-body . ox-mrkup-filter-body)
+    ))
 
 (add-hook 'org-mode-hook (lambda ()
 			               (setq-local seth-jupyter-execution-count 1)))
