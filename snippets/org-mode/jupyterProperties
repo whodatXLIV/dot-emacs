@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: jupyterProperties
+# key: <jp
+# --
+:PROPERTIES:
+:kernel: ${1:seth-py311-dev}$0
+:END:
