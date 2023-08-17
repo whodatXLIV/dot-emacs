@@ -2,6 +2,4 @@
 # name: jupyterProperties
 # key: <jp
 # --
-:PROPERTIES:
-:kernel: ${1:seth-py311-dev}$0
-:END:
+#+PROPERTY: header-args :session "/scp:sfigueroa@dev.focusvq.com:${1:sessionName}" :kernel ${2:seth-py311-dev} :async yes :results drawer$0

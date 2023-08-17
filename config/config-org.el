@@ -118,7 +118,7 @@
                                                    '(org-tag                ((t (:inherit shadow))))
                                                    '(org-date               ((t (:foreground "#83a598" :underline t))))
                                                    '(org-verbatim           ((t (:inherit org-block :background "#3c3836" :foreground "#d5c4a1"))))
-                                                   '(org-code               ((t (:inherit org-verbatim :background "#3c3836" :foreground "#fe8019"))))
+                                                   '(org-code               ((t (:inherit org-verbatim :background "#181818" :foreground "#90d1fc"))))
                                                    '(org-quote              ((t (:inherit org-block :slant italic))))
                                                    '(org-level-1            ((t (:foreground "#3375a8" :background "#181818" :weight bold :height 1.3 :overline nil :underline t :extend t)))) ;; Blue
                                                    '(org-level-2            ((t (:foreground "#8ec07c" :background "#181818" :weight bold :height 1.2 :overline nil :extend t)))) ;; Aqua
@@ -135,9 +135,10 @@
 
 
 (add-hook 'org-mode-hook (lambda () 
-
+                           
                            (setq
                             ;; Edit settings
+                            org-babel-min-lines-for-block-output 1
                             org-auto-align-tags nil
                             org-tags-column 0
                             org-catch-invisible-edits 'show-and-error
@@ -196,6 +197,7 @@
 			               (setq-local seth-jupyter-execution-count 1)))
 
 (defun org-babel-add-time-stamp-after-execute-before-src-block ()
+  ;; (sleep-for 2)
   (end-of-line)
   (save-excursion
     (search-backward "#+BEGIN_SRC" 0 t)
@@ -222,6 +224,86 @@
 
 (add-hook 'org-babel-after-execute-hook
           'org-babel-add-time-stamp-after-execute-before-src-block)
+
+
+(defun /jupyter-clean-async--results ()
+  "cleans drawer results for async jupyter code blocks"
+  (search-forward "#+begin_example")
+  (beginning-of-line)
+  (kill-line 1)
+  (search-forward "#+end_example")
+  (beginning-of-line)
+  (kill-line 1)
+  )
+
+(defun /jupyter-clean-async-ansi--results ()
+  "cleans drawer results for async jupyter code blocks"
+  (scimax-jupyter-ansi)
+  (/jupyter-clean-async--results)
+  (/jupyter-clean-async--results)
+  )
+
+
+
+(with-eval-after-load 'jupyter-client
+  (defun /jupyter-remove-empty-async-results (args)
+    "remove results block if the results are empty"
+    (let*
+        ((req (nth 1 args))
+         (msg (nth 2 args))
+         (is-org-request (eq (type-of req) 'jupyter-org-request)))
+      (when is-org-request
+        (jupyter-with-message-content msg (status payload)
+          (when (and (jupyter-org-request-async-p req)
+                     (equal status "ok")
+                     (not (jupyter-org-request-id-cleared-p req)))
+            (jupyter-org--clear-request-id req)
+            (org-with-point-at (jupyter-org-request-marker req)
+              (org-babel-remove-result)))))
+      args))
+
+  (unless (advice-member-p #'/jupyter-remove-empty-async-results 'jupyter-handle-execute-reply)
+    (advice-add 'jupyter-handle-execute-reply :filter-args #'/jupyter-remove-empty-async-results)))
+
+(with-eval-after-load 'jupyter-client
+  (defun /jupyter-ansi-async-results (args)
+    "Translate the ansi key code in results with errors"
+    (let*
+        ((req (nth 1 args))
+         (msg (nth 2 args))
+         (is-org-request (eq (type-of req) 'jupyter-org-request)))
+      (when is-org-request
+        (jupyter-with-message-content msg (status payload)
+          (when (and (jupyter-org-request-async-p req)
+                     (not (equal status "ok")))
+            (org-with-point-at (jupyter-org-request-marker req)
+              (/jupyter-clean-async-ansi--results)
+              ))))
+      args))
+
+  (unless (advice-member-p #'/jupyter-ansi-async-results 'jupyter-handle-execute-reply)
+    (advice-add 'jupyter-handle-execute-reply :filter-args #'/jupyter-ansi-async-results)))
+
+(with-eval-after-load 'jupyter-client
+  (defun /jupyter-clean-async-results (args)
+    "calls the cleaning of async results in jupyter blocks"
+    (let*
+        ((req (nth 1 args))
+         (msg (nth 2 args))
+         (is-org-request (eq (type-of req) 'jupyter-org-request)))
+      (when is-org-request
+        (jupyter-with-message-content msg (status payload)
+          (when (and (jupyter-org-request-async-p req)
+                     (equal status "ok"))
+            (org-with-point-at (jupyter-org-request-marker req)
+              (/jupyter-clean-async--results)
+              ))))
+      args))
+
+  (unless (advice-member-p #'/jupyter-clean-async-results 'jupyter-handle-execute-reply)
+    (advice-add 'jupyter-handle-execute-reply :filter-args #'/jupyter-clean-async-results)))
+
+
 ;; (plist-put org-format-latex-options :scale 1.5)
 
 
