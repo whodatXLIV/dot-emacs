@@ -5,7 +5,7 @@
 
 
 (require 'git-gutter-fringe)
-(global-git-gutter-mode t)
+;; (global-git-gutter-mode t)
 
                                         ; If you want to show git diff information at right fringe
 (setq git-gutter-fr:side 'right-fringe)

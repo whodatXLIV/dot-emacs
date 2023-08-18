@@ -193,6 +193,8 @@
   '((:filter-body . ox-mrkup-filter-body)
     ))
 
+;; * My counter functions
+
 (add-hook 'org-mode-hook (lambda ()
 			               (setq-local seth-jupyter-execution-count 1)))
 
@@ -226,6 +228,10 @@
           'org-babel-add-time-stamp-after-execute-before-src-block)
 
 
+;; * Clean the results
+
+;; ** helper functions
+
 (defun /jupyter-clean-async--results ()
   "cleans drawer results for async jupyter code blocks"
   (search-forward "#+begin_example")
@@ -243,8 +249,21 @@
   (/jupyter-clean-async--results)
   )
 
+(defun seth-clear-all-results ()
+  "Clear all results in the buffer."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (org-babel-next-src-block)
+      (forward-line -1)
+      (beginning-of-line)
+      (when (looking-at "#\\+LASTRUN:")
+        (kill-line))
+      (forward-line 1)
+      (org-babel-remove-result))))
 
 
+;; *** remove result if empty
 (with-eval-after-load 'jupyter-client
   (defun /jupyter-remove-empty-async-results (args)
     "remove results block if the results are empty"
@@ -265,6 +284,7 @@
   (unless (advice-member-p #'/jupyter-remove-empty-async-results 'jupyter-handle-execute-reply)
     (advice-add 'jupyter-handle-execute-reply :filter-args #'/jupyter-remove-empty-async-results)))
 
+;; *** remove example and clean up errors
 (with-eval-after-load 'jupyter-client
   (defun /jupyter-ansi-async-results (args)
     "Translate the ansi key code in results with errors"
@@ -284,6 +304,7 @@
   (unless (advice-member-p #'/jupyter-ansi-async-results 'jupyter-handle-execute-reply)
     (advice-add 'jupyter-handle-execute-reply :filter-args #'/jupyter-ansi-async-results)))
 
+;; *** remove example src block from result
 (with-eval-after-load 'jupyter-client
   (defun /jupyter-clean-async-results (args)
     "calls the cleaning of async results in jupyter blocks"
@@ -294,7 +315,8 @@
       (when is-org-request
         (jupyter-with-message-content msg (status payload)
           (when (and (jupyter-org-request-async-p req)
-                     (equal status "ok"))
+                     (equal status "ok")
+                     (jupyter-org-request-id-cleared-p req))
             (org-with-point-at (jupyter-org-request-marker req)
               (/jupyter-clean-async--results)
               ))))
