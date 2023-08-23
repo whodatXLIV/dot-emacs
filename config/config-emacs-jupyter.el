@@ -41,7 +41,7 @@
              (define-key jupyter-org-interaction-mode-map (kbd "s-l") #'org-babel-remove-result)
              (define-key jupyter-org-interaction-mode-map (kbd "s-C-l") #'seth-clear-all-results)
              (define-key jupyter-org-interaction-mode-map (kbd "s-i") #'jupyter-org-inspect-src-block)
-             (define-key jupyter-org-interaction-mode-map (kbd "C-<tab>") #'completion-at-point)
+             (define-key jupyter-org-interaction-mode-map (kbd "s-<tab>") #'completion-at-point)
              (define-key jupyter-org-interaction-mode-map (kbd "s-z") #'org-babel-switch-to-session)
              (define-key jupyter-org-interaction-mode-map (kbd "s-u") #'jupyter-org-interrupt-kernel)
              (define-key jupyter-org-interaction-mode-map (kbd "s-k") #'(lambda () (interactive) (progn (setq-local seth-jupyter-execution-count 1)

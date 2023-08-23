@@ -19,6 +19,9 @@ Emacs buffer are those starting with “*”."
     ((eq major-mode 'dired-mode)
      "Dired"
      )
+    ((eq major-mode 'jupyter-repl-mode)
+     "Kernels"
+     )
     ((eq major-mode 'js2-mode)
      "js"
      )

@@ -92,9 +92,6 @@
 
 (require-package 'org-modern)
 
-(org-modern-mode)
-(org-modern-agenda)
-
 (add-hook 'org-mode-hook (lambda () 
                            (custom-theme-set-faces 'user
                                                    ;; '(cursor                 ((t (:foreground "#928374"))))
@@ -129,9 +126,14 @@
                                                    '(org-level-7            ((t (:foreground "#d3869b" :background "#181818" :weight bold :height 1.1 :overline nil :extend t)))) ;; Blue
                                                    '(org-level-8            ((t (:background "#181818" :weight bold :height 1.1 :overline nil :extend t))))
                                                    '(org-headline-done      ((t (:foreground "#928374" :background "#181818" :weight bold :overline nil :extend t)))) ;; Gray
-                                                   '(org-ellipsis           ((t (:inherit shadow :height 1.0 :weight bold :extend t)))) 
+                                                   '(org-ellipsis           ((t (:inherit shadow :height 1.0 :weight bold :extend t))))
+                                                   '(org-latex-and-related  ((t (:inherit org-block :extend t))))                                                   
                                                    '(org-table              ((t (:foreground "#d5c4a1" ))))
-                                                   )))
+                                                   )
+                           
+                           (org-modern-mode)
+                           (org-modern-agenda)
+))
 
 
 (setq
