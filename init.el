@@ -96,6 +96,11 @@
         )
       )
 
+(defun ansi-color-on-buffer ()
+  "..."
+  (interactive)
+  (ansi-color-apply-on-region (point-min) (point-max)))
+
 ;; (setq auto-mode-alist
 ;;   (append
 ;;    ;; .el files use lisp instead of elisp
@@ -205,37 +210,4 @@
 (global-hl-line-mode 1)
 (set-face-attribute 'hl-line nil :inherit nil :background "gray6")
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-block ((t (:inherit default))))
- '(org-document-info ((t (:foreground "dark orange"))))
- '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
- '(org-done ((t (:foreground "lime green" :background "gray10" :box (:color "forest green" :line-width 2 :style none) :height 1))))
- '(org-level-1 ((t (:font "American Typewriter" :weight regular :background "gray15" :foreground "#70c0b1" :height 1.5))))
- '(org-level-2 ((t (:font "Courier New" :weight regular :underline t :foreground "salmon" :height 1.3))))
- '(org-level-3 ((t (:font "Verdana" :weight regular :foreground "SkyBlue" :height 1.2))))
- '(org-level-4 ((t (:font "Verdana" :weight regular :foreground "SlateBlue3" :height 1.1))))
- '(org-level-5 ((t (:font "Verdana" :weight regular :foreground "orange3"))))
- '(org-level-6 ((t (:font "Verdana" :weight regular :foreground "DarkOliveGreen"))))
- '(org-level-7 ((t (:font "Verdana" :weight regular :foreground "gray60"))))
- '(org-level-8 ((t (:font "Verdana" :weight regular :foreground "gray50"))))
- '(org-link ((t (:foreground "royal blue" :underline t))))
- '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
- '(org-property-value ((t (:inherit fixed-pitch))) t)
- '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
- '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
- '(org-todo ((t (:foreground "OrangeRed" :background "gray10" :box (:color "firebrick" :line-width 2 :style none) :height 1))))
- '(org-verbatim ((t (:inherit (shadow fixed-pitch))))))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(jupyter ein edbi ejc-sql pulsar flycheck-eglot eglot pylint lsp-jedi posframe json-rpc-server json-rpc pyvenv flycheck skewer-mode ace-mc ac-etags page-break-lines dashboard drag-stuff counsel swiper magit projectile smartparens tabbar zoom yapfify yaml-mode xref-js2 undo-tree tramp-term tramp tern-auto-complete speed-type sane-term python-mode pyenv-mode py-yapf multi-term minimap markdown-preview-mode lua-mode lsp-ui js2-refactor ivy-hydra image+ go-mode exec-path-from-shell csv-mode conda company clipboard-collector base16-theme auctex anaconda-mode ace-window))
- '(zoom-mode t nil (zoom))
- '(zoom-size '(0.618 . 0.618)))

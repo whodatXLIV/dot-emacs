@@ -12,37 +12,95 @@
 ;; pandoc notebook.md -o notebook.org
 
 
-(global-set-key (kbd "H-h j") 'scimax-jupyter-org-hydra/body)
-(define-key jupyter-org-interaction-mode-map (kbd "H-<left>") #'python-indent-shift-left)
-(define-key jupyter-org-interaction-mode-map (kbd "H-<right>") #'python-indent-shift-right)
-(define-key jupyter-org-interaction-mode-map (kbd "C-<return>") #'jupyter-org-execute-and-next-block)
-
-(define-key jupyter-org-interaction-mode-map (kbd "H-s-p") #'org-babel-previous-src-block)
-(define-key jupyter-org-interaction-mode-map (kbd "H-s-n") #'org-babel-next-src-block)
-(define-key jupyter-org-interaction-mode-map (kbd "H-s-e") #'scimax-jupyter-jump-to-error)
-(define-key jupyter-org-interaction-mode-map (kbd "H-s-<up>") #'jupyter-org-move-src-block)
-(define-key jupyter-org-interaction-mode-map (kbd "H-s-<down>") #'(jupyter-org-move-src-block t))
-(define-key jupyter-org-interaction-mode-map (kbd "H-s-x") #'jupyter-org-kill-block-and-results)
-(define-key jupyter-org-interaction-mode-map (kbd "H-s-c") #'jupyter-org-copy-block-and-results)
-(define-key jupyter-org-interaction-mode-map (kbd "H-s-o") #'(jupyter-org-clone-block t))
-(define-key jupyter-org-interaction-mode-map (kbd "H-s-m") #'jupyter-org-merge-blocks)
-(define-key jupyter-org-interaction-mode-map (kbd "H-s-s") #'jupyter-org-split-src-block)
-(define-key jupyter-org-interaction-mode-map (kbd "H-s-a") #'(jupyter-org-insert-src-block nil current-prefix-arg))
-(define-key jupyter-org-interaction-mode-map (kbd "H-s-b") #'(jupyter-org-insert-src-block t current-prefix-arg))
-(define-key jupyter-org-interaction-mode-map (kbd "H-s-l") #'org-babel-remove-result)
-(define-key jupyter-org-interaction-mode-map (kbd "H-s-L") #'seth-clear-all-results)
-(define-key jupyter-org-interaction-mode-map (kbd "H-s-i") #'jupyter-org-inspect-src-block)
-(define-key jupyter-org-interaction-mode-map (kbd "C-<tab>") #'completion-at-point)
-(define-key jupyter-org-interaction-mode-map (kbd "H-s-z") #'org-babel-switch-to-session)
-(define-key jupyter-org-interaction-mode-map (kbd "H-s-u") #'jupyter-org-interrupt-kernel)
-(define-key jupyter-org-interaction-mode-map (kbd "H-s-r") #'(progn (setq-local seth-jupyter-execution-count 1)
-                                                                    (jupyter-org-with-src-block-client
-	                                                                 (jupyter-repl-restart-kernel))))
 
 (add-hook 'jupyter-repl-mode-hook ;; org mode
-            '(lambda ()
-               (local-set-key (kbd "H-h h") 'scimax-jupyter-org-hydra/body)
-               ))
+          '(lambda ()
+             (local-set-key (kbd "H-h h") 'scimax-jupyter-org-hydra/body)
+             ))
+
+(add-hook 'org-mode-hook ;; org mode
+          '(lambda ()
+             (define-key org-mode-map (kbd "H-h j") #'scimax-jupyter-org-hydra/body)
+             
+             (define-key jupyter-org-interaction-mode-map (kbd "H-<left>") #'python-indent-shift-left)
+             (define-key jupyter-org-interaction-mode-map (kbd "H-<right>") #'python-indent-shift-right)
+             (define-key jupyter-org-interaction-mode-map (kbd "C-<return>") #'jupyter-org-execute-and-next-block)
+
+             (define-key jupyter-org-interaction-mode-map (kbd "s-p") #'org-babel-previous-src-block)
+             (define-key jupyter-org-interaction-mode-map (kbd "s-n") #'org-babel-next-src-block)
+             (define-key jupyter-org-interaction-mode-map (kbd "s-e") #'scimax-jupyter-jump-to-error)
+             (define-key jupyter-org-interaction-mode-map (kbd "s-<up>") #'jupyter-org-move-src-block)
+             (define-key jupyter-org-interaction-mode-map (kbd "s-<down>") #'(lambda () (interactive) (jupyter-org-move-src-block t)))
+             (define-key jupyter-org-interaction-mode-map (kbd "s-x") #'jupyter-org-kill-block-and-results)
+             (define-key jupyter-org-interaction-mode-map (kbd "s-c") #'jupyter-org-copy-block-and-results)
+             (define-key jupyter-org-interaction-mode-map (kbd "s-o") #'(lambda () (interactive) (jupyter-org-clone-block t)))
+             (define-key jupyter-org-interaction-mode-map (kbd "s-m") #'jupyter-org-merge-blocks)
+             (define-key jupyter-org-interaction-mode-map (kbd "s-s") #'jupyter-org-split-src-block)
+             (define-key jupyter-org-interaction-mode-map (kbd "s-a") #'jupyter-org-insert-src-block)
+             (define-key jupyter-org-interaction-mode-map (kbd "s-b") #'(lambda () (interactive) (jupyter-org-insert-src-block t)))
+             (define-key jupyter-org-interaction-mode-map (kbd "s-l") #'org-babel-remove-result)
+             (define-key jupyter-org-interaction-mode-map (kbd "s-C-l") #'seth-clear-all-results)
+             (define-key jupyter-org-interaction-mode-map (kbd "s-i") #'jupyter-org-inspect-src-block)
+             (define-key jupyter-org-interaction-mode-map (kbd "C-<tab>") #'completion-at-point)
+             (define-key jupyter-org-interaction-mode-map (kbd "s-z") #'org-babel-switch-to-session)
+             (define-key jupyter-org-interaction-mode-map (kbd "s-u") #'jupyter-org-interrupt-kernel)
+             (define-key jupyter-org-interaction-mode-map (kbd "s-k") #'(lambda () (interactive) (progn (setq-local seth-jupyter-execution-count 1)
+                                                                                                        (scimax-jupyter-org-kill-kernel))))
+             (define-key jupyter-org-interaction-mode-map (kbd "s-r") #'(lambda () (interactive) (progn (setq-local seth-jupyter-execution-count 1)
+                                                                                                          (jupyter-org-with-src-block-client
+	                                                                                                       (jupyter-repl-restart-kernel)))))
+
+             (pretty-hydra-define scimax-jupyter-org-hydra (:color blue :hint nil)
+               ("Execute"
+                (
+                 ("<return>" nil "quit" :color red)
+                 ("C-c C-c" org-ctrl-c-ctrl-c "current" :color red)
+                 ("C-<return>" jupyter-org-execute-and-next-block "current and next" :color red)
+                 ("H-<return>" (progn (org-ctrl-c-ctrl-c) (scimax-ob-insert-src-block t)) "current and new" )
+                 ;; ("C-M-<return>" jupyter-org-execute-subtree "subtree")
+                 ("S-C-<return>" jupyter-org-restart-and-execute-to-point "restart to point")
+                 ("S-M-<return>" jupyter-org-restart-kernel-execute-buffer "restart buffer"))
+
+                "Navigate"
+                (("p" org-babel-previous-src-block "previous" :color red)
+                 ;; ("P" jupyter-org-previous-busy-src-block "previous busy")
+                 ("n" org-babel-next-src-block  "next" :color red)
+                 ;; ("N" jupyter-org-next-busy-src-block "next busy" :color red)
+                 ("g" jupyter-org-jump-to-visible-block "jump to visible src")
+                 ("G" jupyter-org-jump-to-block "jump to src block")
+                 ("e" scimax-jupyter-jump-to-error "Jump to error"))
+
+                "Edit"
+                (("<up>" jupyter-org-move-src-block "move up" :color red)
+                 ("<down>" (jupyter-org-move-src-block t) "move down" :color red)
+                 ("x" jupyter-org-kill-block-and-results "kill block")
+                 ("c" jupyter-org-copy-block-and-results "copy block")
+                 ("o" (jupyter-org-clone-block t) "clone")
+                 ("m" jupyter-org-merge-blocks "merge")
+                 ("s" jupyter-org-split-src-block "split")
+                 ("a" (jupyter-org-insert-src-block nil current-prefix-arg) "insert above")
+                 ("b" (jupyter-org-insert-src-block t current-prefix-arg) "insert below")
+                 ("l" org-babel-remove-result "clear result")
+                 ("L" seth-clear-all-results "clear all results")
+                 ("h" jupyter-org-edit-header "edit header"))
+
+                "Misc"
+                (("i" jupyter-org-inspect-src-block "inspect")
+                 ("<tab>" completion-at-point "Complete")
+                 
+                 ("O" scimax-ob/body "scimax-ob")
+                 ("E" ox-ipynb-export-to-ipynb-no-results-file-and-open "Export to ipynb no results")
+                 ("q" nil "quit"))
+                
+                "Kernel"
+                (("s" org-babel-jupyter-scratch-buffer "scratch")
+                 ("z" org-babel-switch-to-session "REPL")
+                 ("u" jupyter-org-interrupt-kernel "interrupt")
+                 ("r" (progn (setq-local seth-jupyter-execution-count 1)
+                             (jupyter-org-with-src-block-client
+	                          (jupyter-repl-restart-kernel))) "restart")
+                 ("k" (progn (setq-local seth-jupyter-execution-count 1) (scimax-jupyter-org-kill-kernel)) "kill"))))
+             ))
 
 (setq  org-src-block-faces '(("emacs-lisp" (:background "gray10" :extend t))
 			                 ("sh" (:background "gray10" :extend t))
@@ -50,6 +108,7 @@
                              ("ipython" (:background "gray10" :extend t))
                              ("jupyter-python" (:background "gray10" :extend t))
                              ))
+(setq org-babel-jupyter-resource-directory '"./plots/")
 
 
 ;; * Numbered lines in code blocks
@@ -115,56 +174,7 @@
 (provide 'config-emacs-jupyter)
 ;;; config-emacs-jupyter.el ends here
 
-(pretty-hydra-define scimax-jupyter-org-hydra (:color blue :hint nil)
-  ("Execute"
-   (
-    ("<return>" nil "quit" :color red)
-    ("C-c C-c" org-ctrl-c-ctrl-c "current" :color red)
-    ("C-<return>" jupyter-org-execute-and-next-block "current and next" :color red)
-    ("H-<return>" (progn (org-ctrl-c-ctrl-c) (scimax-ob-insert-src-block t)) "current and new" )
-    ;; ("C-M-<return>" jupyter-org-execute-subtree "subtree")
-    ("S-C-<return>" jupyter-org-restart-and-execute-to-point "restart to point")
-    ("S-M-<return>" jupyter-org-restart-kernel-execute-buffer "restart buffer"))
 
-   "Navigate"
-   (("p" org-babel-previous-src-block "previous" :color red)
-    ;; ("P" jupyter-org-previous-busy-src-block "previous busy")
-    ("n" org-babel-next-src-block  "next" :color red)
-    ;; ("N" jupyter-org-next-busy-src-block "next busy" :color red)
-    ("g" jupyter-org-jump-to-visible-block "jump to visible src")
-    ("G" jupyter-org-jump-to-block "jump to src block")
-    ("e" scimax-jupyter-jump-to-error "Jump to error"))
-
-   "Edit"
-   (("<up>" jupyter-org-move-src-block "move up" :color red)
-    ("<down>" (jupyter-org-move-src-block t) "move down" :color red)
-    ("x" jupyter-org-kill-block-and-results "kill block")
-    ("c" jupyter-org-copy-block-and-results "copy block")
-    ("o" (jupyter-org-clone-block t) "clone")
-    ("m" jupyter-org-merge-blocks "merge")
-    ("s" jupyter-org-split-src-block "split")
-    ("a" (jupyter-org-insert-src-block nil current-prefix-arg) "insert above")
-    ("b" (jupyter-org-insert-src-block t current-prefix-arg) "insert below")
-    ("l" org-babel-remove-result "clear result")
-    ("L" seth-clear-all-results "clear all results")
-    ("h" jupyter-org-edit-header "edit header"))
-
-   "Misc"
-   (("i" jupyter-org-inspect-src-block "inspect")
-    ("<tab>" completion-at-point "Complete")
-    
-    ("O" scimax-ob/body "scimax-ob")
-    ("E" ox-ipynb-export-to-ipynb-no-results-file-and-open "Export to ipynb no results")
-    ("q" nil "quit"))
-   
-   "Kernel"
-   (("s" org-babel-jupyter-scratch-buffer "scratch")
-    ("z" org-babel-switch-to-session "REPL")
-    ("u" jupyter-org-interrupt-kernel "interrupt")
-    ("r" (progn (setq-local seth-jupyter-execution-count 1)
-           (jupyter-org-with-src-block-client
-	       (jupyter-repl-restart-kernel))) "restart")
-    ("k" (progn (setq-local seth-jupyter-execution-count 1) (scimax-jupyter-org-kill-kernel)) "kill"))))
 
 ;; *OX-IPYNB
 ;;

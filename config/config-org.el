@@ -92,8 +92,8 @@
 
 (require-package 'org-modern)
 
-(add-hook 'org-mode-hook #'org-modern-mode)
-(add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
+(org-modern-mode)
+(org-modern-agenda)
 
 (add-hook 'org-mode-hook (lambda () 
                            (custom-theme-set-faces 'user
@@ -134,32 +134,38 @@
                                                    )))
 
 
-(add-hook 'org-mode-hook (lambda () 
-                           
-                           (setq
-                            ;; Edit settings
-                            org-babel-min-lines-for-block-output 1
-                            org-auto-align-tags nil
-                            org-tags-column 0
-                            org-catch-invisible-edits 'show-and-error
-                            org-special-ctrl-a/e t
-                            org-insert-heading-respect-content t
-                            
-                            ;; Org styling, hide markup etc.
-                            org-hide-emphasis-markers t
-                            org-pretty-entities t
-                            
-                            ;; Agenda styling
-                            org-agenda-tags-column 0
-                            org-agenda-block-separator ?─
-                            org-agenda-time-grid
-                            '((daily today require-timed)
-                              (800 1000 1200 1400 1600 1800 2000)
-                              " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
-                            org-agenda-current-time-string
-                            "⭠ now ─────────────────────────────────────────────────")))
+(setq
+ ;; Edit settings
+ org-babel-min-lines-for-block-output 1
+ org-auto-align-tags nil
+ org-tags-column 0
+ org-catch-invisible-edits 'show-and-error
+ org-special-ctrl-a/e t
+ org-insert-heading-respect-content t
+ 
+ ;; Org styling, hide markup etc.
+ org-hide-emphasis-markers t
+ org-pretty-entities nil
+ 
+ ;; Agenda styling
+ org-agenda-tags-column 0
+ org-agenda-block-separator ?─
+ org-agenda-time-grid
+ '((daily today require-timed)
+   (800 1000 1200 1400 1600 1800 2000)
+   " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
+ org-agenda-current-time-string
+ "⭠ now ─────────────────────────────────────────────────"
 
-
+ org-agenda-ndays 7
+ org-deadline-warning-days 10
+ org-agenda-show-all-dates t
+ org-agenda-start-on-weekday nil
+ org-reverse-note-order t
+ org-fast-tag-selection-single-key (quote expert)
+ org-log-into-drawer t
+ org-image-actual-width nil
+ org-export-with-drawers t)
 ;;;;;;;;;
 
 
@@ -169,16 +175,7 @@
 	  org-default-notes-file '("~/Documents/notes.org"))
 
 
-(setq org-agenda-ndays 7
-	  org-deadline-warning-days 10
-	  org-agenda-show-all-dates t
-	  org-agenda-start-on-weekday nil
-	  org-reverse-note-order t
-	  org-fast-tag-selection-single-key (quote expert)
-	  org-log-into-drawer t
-	  org-image-actual-width nil
-	  org-export-with-drawers t
-	  )
+
 
 ;; Backend for HTML Table export
 
@@ -197,7 +194,7 @@
 
 (add-hook 'org-mode-hook (lambda ()
 			               (setq-local seth-jupyter-execution-count 1)))
-
+(setq seth-jupyter-execution-count 1)
 (defun org-babel-add-time-stamp-after-execute-before-src-block ()
   ;; (sleep-for 2)
   (end-of-line)
@@ -246,7 +243,6 @@
   "cleans drawer results for async jupyter code blocks"
   (scimax-jupyter-ansi)
   (/jupyter-clean-async--results)
-  (/jupyter-clean-async--results)
   )
 
 (defun seth-clear-all-results ()
@@ -261,6 +257,24 @@
         (kill-line))
       (forward-line 1)
       (org-babel-remove-result))))
+
+(defun seth-interrupt-kernel ()
+  "Clear all results in the buffer."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    ;; (while (org-babel-next-src-block)
+    ;;   (forward-line 1)
+    ;;   ;; (jupyter-org-interrupt-kernel)
+    ;;   )
+    (let* ((num 0))
+      (while (< num 5)
+        (org-babel-next-src-block)
+        (forward-line 1)
+        (jupyter-org-interrupt-kernel)
+        (setq num (+1 num))))
+    )
+  )
 
 
 ;; *** remove result if empty
@@ -298,7 +312,11 @@
                      (not (equal status "ok")))
             (org-with-point-at (jupyter-org-request-marker req)
               (/jupyter-clean-async-ansi--results)
-              ))))
+              )
+            (org-with-point-at (jupyter-org-request-marker req)
+              (when (not (search-forward "KeyboardInterrupt" nil t))
+                  (seth-interrupt-kernel)))
+            )))
       args))
 
   (unless (advice-member-p #'/jupyter-ansi-async-results 'jupyter-handle-execute-reply)

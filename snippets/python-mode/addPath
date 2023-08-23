@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: addPath
+# key: <ap
+# --
+import os
+from pathlib import Path
+import sys
+sys.path.append(str(Path(os.path.abspath('')).parent)$0)
