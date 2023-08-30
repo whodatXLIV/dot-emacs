@@ -212,7 +212,7 @@
       (newline)
       (forward-line -1))
     (when (looking-at "#\\+LASTRUN:")
-      (kill-line))
+      (delete-line))
     (insert (concat
              "#+LASTRUN: "
              (format-time-string "[%Y-%m-%d %a %H:%M:%S]" (current-time))
@@ -235,14 +235,29 @@
   "cleans drawer results for async jupyter code blocks"
   (search-forward "#+begin_example")
   (beginning-of-line)
-  (kill-line 1)
+  (delete-line 1)
   (search-forward "#+end_example")
   (beginning-of-line)
-  (kill-line 1)
+  (delete-line 1)
   )
 
 (defun /jupyter-clean-async-ansi--results ()
   "cleans drawer results for async jupyter code blocks"
+  (let* ((r (org-babel-where-is-src-block-result))
+	     (result (when r
+		           (save-excursion
+		             (goto-char r)
+		             (org-element-context)))))
+    (when result
+      (let* ((sp (org-element-property :begin result))
+             (ep (org-element-property :end result)))
+        (replace-string-in-region "[43m" "[45m" sp ep ) ;; replace yellow highlights
+        (replace-string-in-region ";43m" ";45m" sp ep )
+        (replace-string-in-region "[34m" "[33m" sp ep ) ;; replace blue text
+        (replace-string-in-region ";34m" ";33m" sp ep )
+        t
+        ))
+    t)
   (scimax-jupyter-ansi)
   (/jupyter-clean-async--results)
   )
@@ -256,7 +271,7 @@
       (forward-line -1)
       (beginning-of-line)
       (when (looking-at "#\\+LASTRUN:")
-        (kill-line))
+        (delete-line))
       (forward-line 1)
       (org-babel-remove-result))))
 
