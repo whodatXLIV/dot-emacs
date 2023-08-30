@@ -212,7 +212,8 @@
       (newline)
       (forward-line -1))
     (when (looking-at "#\\+LASTRUN:")
-      (delete-line))
+      (delete-line)
+      (open-line 1))
     (insert (concat
              "#+LASTRUN: "
              (format-time-string "[%Y-%m-%d %a %H:%M:%S]" (current-time))
@@ -235,10 +236,12 @@
   "cleans drawer results for async jupyter code blocks"
   (search-forward "#+begin_example")
   (beginning-of-line)
-  (delete-line 1)
+  (delete-line)
+  (open-line 1)
   (search-forward "#+end_example")
   (beginning-of-line)
-  (delete-line 1)
+  (delete-line)
+  (open-line 1)
   )
 
 (defun /jupyter-clean-async-ansi--results ()
@@ -271,7 +274,8 @@
       (forward-line -1)
       (beginning-of-line)
       (when (looking-at "#\\+LASTRUN:")
-        (delete-line))
+        (delete-line)
+        (open-line 1))
       (forward-line 1)
       (org-babel-remove-result))))
 
