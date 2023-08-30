@@ -20,3 +20,8 @@ server
 /.python-environments/
 /tramp
 /speed-type/
+/var/
+/straight/
+/.lsp-session-v1
+/Brewfile
+/smex-items
