@@ -58,7 +58,7 @@
 (add-hook 'org-mode-hook (lambda ()
 			               (linum-mode 0)))
 
-(add-hook 'org-mode-hook 'auto-complete-mode)
+(add-hook 'org-mode-hook 'company-mode)
 
 ;;; BEAUTIFYING ORG
 ;; (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))

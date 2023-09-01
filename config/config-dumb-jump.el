@@ -21,6 +21,13 @@
     ("b" dumb-jump-back "Back"))
 
 (global-set-key (kbd "H-h .") 'dumb-jump-hydra/body)
+
+(with-eval-after-load 'dumb-jump
+  (add-to-list 'dumb-jump-language-file-exts '(:language "python" :ext "org" :agtype "python" :rgtype "py")) ;; Make it so that dumb-jump finds python defs
+  )
+;; (setq dumb-jump-language-file-exts '((:language "python" :ext "org" :agtype "python" :rgtype "py")))
+
+;; 
 (provide 'config-dumb-jump)
 
 ;;; config-dumb-jump.el ends here

@@ -12,9 +12,9 @@
 (global-flycheck-eglot-mode 1)
 
   ;; Company mode
-(setq company-idle-delay 1)
-(setq company-minimum-prefix-length 1)
-(add-hook 'python-mode-hook 'company-mode)
+;; (setq company-idle-delay 1)
+;; (setq company-minimum-prefix-length 1)
+;; (add-hook 'python-mode-hook 'company-mode)
 
 (setq flycheck-global-modes '(not python-mode))
 (add-hook 'python-mode-hook #'yas-minor-mode)

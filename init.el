@@ -137,7 +137,7 @@
     :group 'dotemacs)
 
   (defcustom dotemacs-completion-engine
-    'auto-complete
+    'company
     "The completion engine the use."
     :type '(radio
             (const :tag "company-mode" company)
@@ -179,8 +179,8 @@
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)
     (setq ns-command-modifier 'meta
-          ns-option-modifier 'super
-          ns-right-option-modifier 'hyper
+          ns-option-modifier 'hyper
+          ns-right-option-modifier 'super
           )
     )
 

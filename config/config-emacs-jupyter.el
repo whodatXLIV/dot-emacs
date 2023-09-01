@@ -12,12 +12,11 @@
 ;; pandoc notebook.md -o notebook.org
 
 
-
+(add-hook 'jupyter-repl-mode-hook 'company-mode)
+(add-hook 'jupyter-repl-mode-hook 'smartparens-mode)
 (add-hook 'jupyter-repl-mode-hook ;; org mode
-          'smartparens-mode
           '(lambda ()
              (local-set-key (kbd "H-h h") 'scimax-jupyter-org-hydra/body)
-             (add-to-list 'dumb-jump-language-file-exts '(:language "python" :ext "org" :agtype "python" :rgtype "py")) ;; Make it so that dumb-jump finds python defs
              ))
 
 (add-hook 'org-mode-hook ;; org mode

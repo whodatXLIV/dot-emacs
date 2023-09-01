@@ -20,15 +20,19 @@
 
   (setq company-etags-ignore-case t)
   
-  (when (executable-find "tern")
-    (after "company-tern-autoloads"
-      (add-to-list 'company-backends 'company-tern)))
+  ;; (when (executable-find "tern")
+  ;;   (after "company-tern-autoloads"
+  ;;     (add-to-list 'company-backends 'company-tern)))
 
-  (setq company-global-modes
-        '(not
-          eshell-mode comint-mode text-mode erc-mode))
+  ;; (setq company-global-modes
+  ;;       '(not
+  ;;         eshell-mode comint-mode text-mode erc-mode))
+  
 
   (global-company-mode)
+  ;; (global-set-key (kbd "H-<tab>") #'company-complete)
+  (global-set-key (kbd "C-<tab>") #'company-other-backend)
+
 
    (face-attribute 'company-tooltip :background)
     (set-face-attribute 'company-tooltip nil :background "black" :foreground "gray40")
