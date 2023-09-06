@@ -13,6 +13,12 @@
         ("BUG"  . "#FF0000")
         ))
 
+(global-set-key (kbd "H-t t") 'hl-todo-insert)
+(global-set-key (kbd "H-t n") 'hl-todo-next)
+(global-set-key (kbd "H-t p") 'hl-todo-previous)
+
+
+
 (provide 'config-hl-todo)
 
 ;;; config-hl-todo.el ends here
