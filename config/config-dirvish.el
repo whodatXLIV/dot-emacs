@@ -23,7 +23,7 @@
 
 (require-package 'dired-filter)
 (add-hook 'dired-mode-hook 'dired-filter-mode)
-(setq dired-listing-switches "-alog")
+(setq dired-listing-switches "-alogh")
 
 (defun seth/dired-side--vc (directory)
   "Open the root directory of the current version-controlled repository or th present working directory with `dired' and bespoke window parameters."
@@ -48,11 +48,11 @@
     (with-current-buffer dired_dir
       (setq window-size-fixed 'width)
       (switch-to-buffer-other-frame dired_dir)
+      (dired-hide-details-mode)
       (goto-char 0)
       (cl-loop for p in path-list do
                (goto-char (search-forward p))
                (dired-subtree-insert)
-               (print (search-forward p))
                )
       )
     )
@@ -72,6 +72,8 @@
               :keymap counsel-find-file-map
               :caller 'counsel-dired)
   )
+
+(global-set-key (kbd "C-x d") 'seth/dired-side-vc)
 
 (provide 'config-dirvish)
 
