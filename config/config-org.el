@@ -125,15 +125,29 @@
                                                    '(org-level-6            ((t (:foreground "#fb4934" :background "#181818" :weight bold :height 1.1 :overline nil :extend t)))) ;; Red
                                                    '(org-level-7            ((t (:foreground "#d3869b" :background "#181818" :weight bold :height 1.1 :overline nil :extend t)))) ;; Blue
                                                    '(org-level-8            ((t (:background "#181818" :weight bold :height 1.1 :overline nil :extend t))))
-                                                   '(org-headline-done      ((t (:foreground "#928374" :background "#181818" :weight bold :overline nil :extend t)))) ;; Gray
+                                                   '(org-headline-done      ((t (:foreground "#5ca637" :background "#181818" :weight bold :overline nil :extend t)))) ;; Gray
+                                                   '(org-headline-todo      ((t (:foreground "#d45555" :background "#181818" :weight bold :overline nil :extend t)))) ;; Gray
                                                    '(org-ellipsis           ((t (:inherit shadow :height 1.0 :weight bold :extend t))))
                                                    '(org-latex-and-related  ((t (:inherit org-block :extend t))))                                                   
                                                    '(org-table              ((t (:foreground "#d5c4a1" ))))
+                                                   '(org-checkbox           ((t (:foreground "#ffc4a1" :height 1.3))))
                                                    )
                            
                            (org-modern-mode)
                            (org-modern-agenda)
 ))
+
+(add-hook 'org-mode-hook (lambda ()
+			               (setq-local line-spacing 0.1)))
+(font-lock-add-keywords
+ 'org-mode
+ `(("^[ \t]*\\(?:[-+*]\\|[0-9]+[).]\\)[ \t]+\\(\\(?:\\[@\\(?:start:\\)?[0-9]+\\][ \t]*\\)?\\[\\(?:X\\|\\([0-9]+\\)/\\2\\)\\][^\n]*\n\\)" 1 'org-headline-done prepend))
+ 'append)
+
+(font-lock-add-keywords
+ 'org-mode
+ `(("^[ \t]*\\(?:[-+*]\\|[0-9]+[).]\\)[ \t]+\\(\\(?:\\[@\\(?:start:\\)?[0-9]+\\][ \t]*\\)?\\[\\(?:-\\|\\([0-9]+\\)/\\2\\)\\][^\n]*\n\\)" 1 'org-headline-todo prepend))
+ 'append)
 
 
 (setq
@@ -167,7 +181,9 @@
  org-fast-tag-selection-single-key (quote expert)
  org-log-into-drawer t
  org-image-actual-width nil
- org-export-with-drawers t)
+ org-export-with-drawers t
+ )
+
 ;;;;;;;;;
 
 

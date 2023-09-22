@@ -95,6 +95,8 @@
                     (sql-database "elcano"))
         )
       )
+(add-to-list 'org-babel-load-languages '(sql . t) t)
+(org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
 
 (defun ansi-color-on-buffer ()
   "..."
