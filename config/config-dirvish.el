@@ -48,6 +48,7 @@
     (with-current-buffer dired_dir
       (setq window-size-fixed 'width)
       (switch-to-buffer-other-frame dired_dir)
+      (revert-buffer)
       (dired-hide-details-mode)
       (goto-char 0)
       (cl-loop for p in path-list do
