@@ -38,7 +38,7 @@
     (display-buffer-in-side-window
      dired_dir `((side . left)
            (slot . 0)
-           (window-width . 0.2)
+           (window-width . 0.3)
            (window-parameters) . ((no-other-window . t)
                                   (no-delete-other-windows . t)
                                   (mode-line-format . (" " "%b"))

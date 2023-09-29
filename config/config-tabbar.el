@@ -79,6 +79,9 @@ Emacs buffer are those starting with “*”."
     ((eq major-mode 'emacs-lisp-mode)
      "Lisp"
      )
+    ((eq major-mode 'image-mode)
+     "Images"
+     )
     (t
      "Misc"
      )

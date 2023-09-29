@@ -4,7 +4,6 @@
 ;; setup and highlight todos in comments
 
 (require-package 'hl-todo)
-(global-hl-todo-mode)
 
 (setq hl-todo-keyword-faces
       '(("TODO"   . "#934b9c")
@@ -17,6 +16,7 @@
 (global-set-key (kbd "H-t n") 'hl-todo-next)
 (global-set-key (kbd "H-t p") 'hl-todo-previous)
 
+(global-hl-todo-mode)
 
 
 (provide 'config-hl-todo)
