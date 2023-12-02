@@ -8,9 +8,9 @@
 
 ;; (all-the-icons-install-fonts)
 (require-package 'dired-subtree)
-(define-key dired-mode-map (kbd "H-i") 'dired-subtree-insert)
+;; (define-key dired-mode-map (kbd "H-i") 'dired-subtree-insert)
 (define-key dired-mode-map (kbd "H-r") 'dired-subtree-remove)
-(define-key dired-mode-map (kbd "H-c") 'dired-subtree-cycle)
+(define-key dired-mode-map (kbd "H-i") 'dired-subtree-cycle)
 (define-key dired-mode-map (kbd "H-p") 'dired-subtree-up)
 (define-key dired-mode-map (kbd "H-n") 'dired-subtree-down)
 (define-key dired-mode-map (kbd "H-<up>") 'dired-subtree-beginning)

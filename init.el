@@ -101,7 +101,21 @@
 (defun ansi-color-on-buffer ()
   "..."
   (interactive)
+
+  (replace-string-in-region "[43m" "[45m" (point-min) (point-max) ) ;; replace yellow highlights
+  (replace-string-in-region ";43m" ";45m" (point-min) (point-max) )
+  (replace-string-in-region "[34m" "[33m" (point-min) (point-max) ) ;; replace blue text
+  (replace-string-in-region ";34m" ";33m" (point-min) (point-max) )
   (ansi-color-apply-on-region (point-min) (point-max)))
+
+(defun set-region-writeable (begin end)
+  "Removes the read-only text property from the marked region."
+  ;; See http://stackoverflow.com/questions/7410125
+  (interactive "r")
+  (let ((modified (buffer-modified-p))
+        (inhibit-read-only t))
+    (remove-text-properties begin end '(read-only t))
+    (set-buffer-modified-p modified)))
 
 ;; (setq auto-mode-alist
 ;;   (append

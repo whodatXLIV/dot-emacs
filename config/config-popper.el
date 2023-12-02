@@ -15,6 +15,7 @@
         "\\*Async Shell Command\\*"
         help-mode
         compilation-mode
+        image-mode
         ))
 
 ;; Match eshell, shell, term and/or vterm buffers

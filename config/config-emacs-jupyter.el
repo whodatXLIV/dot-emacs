@@ -26,9 +26,9 @@
              (define-key jupyter-org-interaction-mode-map (kbd "H-<left>") #'python-indent-shift-left)
              (define-key jupyter-org-interaction-mode-map (kbd "H-<right>") #'python-indent-shift-right)
              (define-key jupyter-org-interaction-mode-map (kbd "C-<return>") #'jupyter-org-execute-and-next-block)
-
              (define-key jupyter-org-interaction-mode-map (kbd "s-p") #'org-babel-previous-src-block)
              (define-key jupyter-org-interaction-mode-map (kbd "s-n") #'org-babel-next-src-block)
+             (define-key jupyter-org-interaction-mode-map (kbd "s-g") #'jupyter-org-jump-to-visible-block)              
              (define-key jupyter-org-interaction-mode-map (kbd "s-e") #'scimax-jupyter-jump-to-error)
              (define-key jupyter-org-interaction-mode-map (kbd "s-<up>") #'jupyter-org-move-src-block)
              (define-key jupyter-org-interaction-mode-map (kbd "s-<down>") #'(lambda () (interactive) (jupyter-org-move-src-block t)))
