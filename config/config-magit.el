@@ -5,8 +5,8 @@
 ;;; Code:
 (require-package 'magit)
 
-(require-package 'magit-todos)
-(magit-todos-mode)
+;; (require-package 'magit-todos)
+;; (magit-todos-mode)
 (global-set-key (kbd "C-x g") 'magit-status)
 (setenv "GIT_ASKPASS" "git-gui--askpass")
 

@@ -22,8 +22,8 @@
 (global-set-key (kbd "H-l") 'scroll-lock-mode)
 
 
-;; (setq vterm-tramp-shells '(("/bin/zsh")))
-;; (setq tramp-default-remote-shell "/bin/zsh") 
+(setq vterm-tramp-shells '(("/usr/bin/zsh")))
+(setq tramp-default-remote-shell "/usr/bin/zsh") 
 (with-eval-after-load "tramp" (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
 
 ;; '(tramp-connection-properties
@@ -179,7 +179,9 @@
 
   (setq package-archives '(("melpa" . "http://melpa.org/packages/")
                            ("org" . "http://orgmode.org/elpa/")
+                           ("nongnu" . "https://elpa.nongnu.org/nongnu/")
                            ("gnu" . "http://elpa.gnu.org/packages/")))
+
   (setq package-enable-at-startup nil)
   ;; (package-initialize)
 
